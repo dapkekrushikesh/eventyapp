@@ -112,3 +112,142 @@ label {
   color: var(--primary-hover);
   text-decoration: underline;
 }
+
+/* Password validation styles */
+.password-help-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.password-help-btn:hover {
+  color: var(--primary-dark);
+}
+
+.password-strength {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-fill.strength-weak {
+  width: 25%;
+  background-color: #f44336;
+}
+
+.strength-fill.strength-medium {
+  width: 50%;
+  background-color: #ff9800;
+}
+
+.strength-fill.strength-strong {
+  width: 75%;
+  background-color: #2196f3;
+}
+
+.strength-fill.strength-very-strong {
+  width: 100%;
+  background-color: #4caf50;
+}
+
+.strength-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  min-width: 80px;
+  text-align: right;
+}
+
+.password-requirements {
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.password-requirements h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.password-requirements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.password-requirements li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.password-requirements li.met {
+  color: #4caf50;
+}
+
+.password-requirements li.not-met {
+  color: #757575;
+}
+
+.password-requirements li i {
+  font-size: 1rem;
+}
+
+.password-requirements li.met i {
+  color: #4caf50;
+}
+
+.password-requirements li.not-met i {
+  color: #f44336;
+}
+
+.password-errors {
+  margin-top: 0.5rem;
+}
+
+.password-errors .error-message {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Password input color coding */
+.form-control.password-weak {
+  border-color: #f44336;
+}
+
+.form-control.password-medium {
+  border-color: #ff9800;
+}
+
+.form-control.password-strong {
+  border-color: #2196f3;
+}
+
+.form-control.password-very-strong {
+  border-color: #4caf50;
+}

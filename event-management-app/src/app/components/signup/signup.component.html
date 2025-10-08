@@ -37,19 +37,49 @@
     </div>
 
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">Password 
+        <button type="button" class="password-help-btn" (click)="togglePasswordRules()">
+          <i class="material-icons">{{ showPasswordRules ? 'visibility_off' : 'visibility' }}</i>
+        </button>
+      </label>
       <input 
         type="password" 
         id="password" 
         formControlName="password" 
         placeholder="Enter your password"
         class="form-control"
+        [class.password-weak]="getPasswordStrength() === 'weak'"
+        [class.password-medium]="getPasswordStrength() === 'medium'"
+        [class.password-strong]="getPasswordStrength() === 'strong'"
+        [class.password-very-strong]="getPasswordStrength() === 'very-strong'"
       >
-      <div class="error-message" *ngIf="signupForm.get('password')?.errors?.['required'] && signupForm.get('password')?.touched">
-        Password is required
+      
+      <!-- Password Strength Indicator -->
+      <div class="password-strength" *ngIf="signupForm.get('password')?.value">
+        <div class="strength-bar">
+          <div class="strength-fill" [ngClass]="'strength-' + getPasswordStrength()"></div>
+        </div>
+        <span class="strength-text">{{ getPasswordStrength() | titlecase }}</span>
       </div>
-      <div class="error-message" *ngIf="signupForm.get('password')?.errors?.['minlength'] && signupForm.get('password')?.touched">
-        Password must be at least 6 characters
+
+      <!-- Password Requirements -->
+      <div class="password-requirements" *ngIf="showPasswordRules">
+        <h4>Password Requirements:</h4>
+        <ul>
+          <li *ngFor="let requirement of passwordRequirements" 
+              [class.met]="requirement.met" 
+              [class.not-met]="!requirement.met">
+            <i class="material-icons">{{ requirement.met ? 'check_circle' : 'cancel' }}</i>
+            {{ requirement.rule }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Password Errors -->
+      <div class="password-errors">
+        <div class="error-message" *ngFor="let error of getPasswordErrors()">
+          {{ error }}
+        </div>
       </div>
     </div>
 
