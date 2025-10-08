@@ -39,7 +39,7 @@
     <div class="form-group">
       <label for="password">Password 
         <button type="button" class="password-help-btn" (click)="togglePasswordRules()">
-          <i class="material-icons">{{ showPasswordRules ? 'visibility_off' : 'visibility' }}</i>
+          {{ showPasswordRules ? '👁️' : '👁️‍🗨️' }}
         </button>
       </label>
       <input 
@@ -69,7 +69,7 @@
           <li *ngFor="let requirement of passwordRequirements" 
               [class.met]="requirement.met" 
               [class.not-met]="!requirement.met">
-            <i class="material-icons">{{ requirement.met ? 'check_circle' : 'cancel' }}</i>
+            <span>{{ requirement.met ? '✅' : '❌' }}</span>
             {{ requirement.rule }}
           </li>
         </ul>

@@ -3,11 +3,11 @@
 
 NODE_ENV=production
 MONGO_URI=mongodb+srv://dapkerushikesh:123456@eventy.l1rvzct.mongodb.net/eventy
-JWT_SECRET=your_super_secret_jwt_key_make_this_very_long_and_random_for_security_purposes
+JWT_SECRET=eventy_production_jwt_secret_2024_secure_random_string_for_authentication_very_long_key
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
+EMAIL_USER=dapkerushikesh@gmail.com
+EMAIL_PASS=your_gmail_app_password_here
 FRONTEND_URL=https://eventyapp-frontend.onrender.com
 
 # Important Notes:
