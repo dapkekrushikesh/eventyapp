@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://eventy-backend.onrender.com/api'
+  apiUrl: 'https://eventyapp-backend.onrender.com/api'
 };

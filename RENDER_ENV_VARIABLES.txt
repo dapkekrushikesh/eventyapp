@@ -1,0 +1,17 @@
+# Environment Variables for Render Backend Deployment
+# Copy and paste these in Render.com Dashboard → Your Service → Environment
+
+NODE_ENV=production
+MONGO_URI=mongodb+srv://dapkerushikesh:123456@eventy.l1rvzct.mongodb.net/eventy
+JWT_SECRET=your_super_secret_jwt_key_make_this_very_long_and_random_for_security_purposes
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+FRONTEND_URL=https://eventyapp-frontend.onrender.com
+
+# Important Notes:
+# - PORT is automatically set by Render
+# - Replace JWT_SECRET with a long random string
+# - Update EMAIL_USER and EMAIL_PASS with real credentials
+# - FRONTEND_URL will be updated after frontend deployment
