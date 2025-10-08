@@ -1,0 +1,68 @@
+<div class="profile-settings-container">
+  <!-- Header -->
+  <header class="settings-header">
+    <div class="header-content">
+      <button class="back-button" (click)="goBack()">
+        <span class="material-icons">arrow_back</span>
+      </button>
+      <h1>Profile Settings</h1>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="settings-main">
+    <div class="settings-card">
+      <div class="settings-form">
+        <!-- Profile Image Section -->
+        <div class="profile-image-section">
+          <h2>Profile Picture</h2>
+          <div class="image-upload-area">
+            <div class="current-image">
+              <img [src]="tempProfileImageUrl || profileImageUrl" alt="Profile Preview" class="profile-preview">
+            </div>
+            <div class="upload-controls">
+              <label for="profileImageInput" class="upload-btn">
+                <span class="material-icons">photo_camera</span>
+                Choose Profile Picture
+              </label>
+              <input 
+                type="file" 
+                id="profileImageInput" 
+                accept="image/*" 
+                (change)="onProfileImageChange($event)"
+                style="display: none;">
+              <p class="upload-hint">Recommended: Square image, at least 200x200 pixels</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Display Name Section -->
+        <div class="display-name-section">
+          <h2>Display Name</h2>
+          <div class="form-group">
+            <label for="displayName">Your Name</label>
+            <input 
+              type="text" 
+              id="displayName"
+              [(ngModel)]="tempDisplayName" 
+              placeholder="Enter your display name"
+              class="form-input"
+              maxlength="50">
+            <p class="input-hint">This name will be shown in your profile across the platform</p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="cancel-button" (click)="cancel()">
+            Cancel
+          </button>
+          <button class="save-button" (click)="saveProfileSettings()" [disabled]="!tempDisplayName.trim()">
+            <span class="material-icons">save</span>
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

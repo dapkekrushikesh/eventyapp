@@ -1,0 +1,89 @@
+<div class="events-page">
+  <div class="events-header">
+    <div class="search-center">
+      <input type="text" [(ngModel)]="searchQuery" (input)="applyFilter()" placeholder="Search events by title, description or location...">
+    </div>
+    <div class="actions-right">
+      <button class="add-btn" (click)="openCreate()">+ Add New</button>
+    </div>
+  </div>
+
+  <div class="events-main">
+    <div class="events-list">
+      <h3>Events</h3>
+      <div class="event-item" *ngFor="let e of filtered">
+        <div class="left">
+          <img [src]="e.imageUrl || 'images/event1.jpg'" alt="{{e.title}}">
+        </div>
+        <div class="body">
+          <h4>{{e.title}}</h4>
+          <p class="meta">{{e.date}} • {{e.time}} • {{e.location}}</p>
+          <p class="desc">{{e.description}}</p>
+        </div>
+        <div class="right">
+          <div class="price">₹{{e.price}}</div>
+          <div class="controls">
+            <button (click)="openEdit(e)">Update</button>
+            <button (click)="deleteEvent(e)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="booked-section">
+      <h3>Previously Booked Events</h3>
+      <div *ngIf="bookedEvents.length === 0" class="empty">No bookings yet</div>
+      <div class="booked-item" *ngFor="let b of bookedEvents">
+        <div class="b-title">{{b.title}}</div>
+        <div class="b-meta">{{b.date}} • {{b.location}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Modal -->
+  <div class="modal" *ngIf="showForm">
+    <div class="modal-content">
+      <h3>{{ editingEvent ? 'Update Event' : 'Create Event' }}</h3>
+      <form (ngSubmit)="submitForm()">
+        <label>Title</label>
+        <input [(ngModel)]="formModel.title" name="title">
+
+        <label>Description</label>
+        <textarea [(ngModel)]="formModel.description" name="description"></textarea>
+
+        <div class="row">
+          <div>
+            <label>Date</label>
+            <input type="date" [(ngModel)]="formModel.date" name="date">
+          </div>
+          <div>
+            <label>Time</label>
+            <input type="time" [(ngModel)]="formModel.time" name="time">
+          </div>
+        </div>
+
+        <label>Location</label>
+        <input [(ngModel)]="formModel.location" name="location">
+
+        <div class="row">
+          <div>
+            <label>Price (₹)</label>
+            <input type="number" [(ngModel)]="formModel.price" name="price" placeholder="Enter amount in ₹">
+          </div>
+          <div>
+            <label>Capacity</label>
+            <input type="number" [(ngModel)]="formModel.capacity" name="capacity">
+          </div>
+        </div>
+
+        <label>Category</label>
+        <input [(ngModel)]="formModel.category" name="category">
+
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" (click)="cancelForm()">Cancel</button>
+          <button type="submit" class="btn-submit">{{ editingEvent ? 'Update' : 'Create' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

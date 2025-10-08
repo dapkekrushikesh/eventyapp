@@ -1,0 +1,9 @@
+version: 2
+
+services:
+  - type: web
+    name: eventy-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npx serve -s dist/event-management-app -l 3000
+    staticPublishPath: ./dist/event-management-app

@@ -1,0 +1,81 @@
+[
+  {
+    "type": "console",
+    "text": "[vite] connecting..."
+  },
+  {
+    "type": "console",
+    "text": "Angular is running in development mode."
+  },
+  {
+    "type": "console",
+    "text": "[vite] connected."
+  },
+  {
+    "type": "console",
+    "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  },
+  {
+    "type": "console",
+    "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  },
+  {
+    "type": "visited",
+    "url": "http://localhost:4200/events",
+    "ok": true
+  },
+  {
+    "type": "console",
+    "text": "[vite] connecting..."
+  },
+  {
+    "type": "console",
+    "text": "[vite] connected."
+  },
+  {
+    "type": "console",
+    "text": "Angular is running in development mode."
+  },
+  {
+    "type": "console",
+    "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o"
+  },
+  {
+    "type": "visited",
+    "url": "http://localhost:4200/",
+    "ok": true
+  },
+  {
+    "type": "console",
+    "text": "[vite] connecting..."
+  },
+  {
+    "type": "console",
+    "text": "[vite] connected."
+  },
+  {
+    "type": "console",
+    "text": "Angular is running in development mode."
+  },
+  {
+    "type": "console",
+    "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  },
+  {
+    "type": "console",
+    "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  },
+  {
+    "type": "console",
+    "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  },
+  {
+    "type": "console",
+    "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  },
+  {
+    "type": "visited",
+    "url": "http://localhost:4200/dashboard",
+    "ok": true
+  }
+]

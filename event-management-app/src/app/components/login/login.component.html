@@ -1,0 +1,59 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <h2>Login</h2>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        formControlName="email" 
+        placeholder="Enter your email"
+        class="form-control"
+      >
+      <div class="error-message" *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched">
+        Email is required
+      </div>
+      <div class="error-message" *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched">
+        Please enter a valid email
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        formControlName="password" 
+        placeholder="Enter your password"
+        class="form-control"
+      >
+      <div class="error-message" *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched">
+        Password is required
+      </div>
+      <div class="error-message" *ngIf="loginForm.get('password')?.errors?.['minlength'] && loginForm.get('password')?.touched">
+        Password must be at least 6 characters
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="login-button" [disabled]="!loginForm.valid">
+        Login
+      </button>
+      <!-- <button type="button" class="new-here-button" (click)="goToSignup()">
+        New Here
+      </button> -->
+    </div>
+
+    <button type="button" class="forgot-password-button" (click)="onForgotPassword()">
+      Forgot Password?
+    </button>
+
+    <div class="signup-link">
+      Don't have an account? 
+      <button type="button" class="text-button" (click)="goToSignup()">
+        Sign up here
+      </button>
+    </div>
+  </form>
+</div>

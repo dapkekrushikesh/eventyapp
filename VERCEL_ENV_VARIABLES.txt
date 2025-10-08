@@ -1,0 +1,13 @@
+# Environment Variables for Vercel Backend Deployment
+
+NODE_ENV=production
+PORT=5000
+MONGO_URI=mongodb+srv://dapkerushikesh:123456@eventy.l1rvzct.mongodb.net/eventy
+JWT_SECRET=your_super_secret_jwt_key_here_change_in_production_make_it_random_and_long
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+FRONTEND_URL=https://your-frontend-url.vercel.app
+
+# Copy these to Vercel Dashboard > Project Settings > Environment Variables
