@@ -149,3 +149,47 @@
   outline: 2px solid #0078d4;
   background: #fff;
 }
+.date-range-popup {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  background: #fff;
+  border: 1.5px solid #0078d4;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  padding: 18px 20px 14px 20px;
+  z-index: 100;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.date-range-popup label {
+  font-size: 14px;
+  color: #0078d4;
+  margin-bottom: 2px;
+}
+.date-range-popup input[type="date"] {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 15px;
+  margin-bottom: 8px;
+  background: #f5f8fa;
+  color: #333;
+}
+.date-range-popup .btn-submit {
+  background: #0078d4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 0;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+.date-range-popup .btn-submit:hover {
+  background: #005fa3;
+}

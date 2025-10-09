@@ -61,6 +61,8 @@ export class DashboardComponent implements OnInit {
   // New property to control date range popup
   showDateRange = false;
   showFilterPopup = false;
+  showDateRangePopup = false;
+  dateRange = { from: '', to: '' };
 
   constructor(
     private router: Router,
@@ -645,5 +647,15 @@ export class DashboardComponent implements OnInit {
   applySearch() {
     this.searchQuery = this.searchQuery.trim();
     // No-op: filteredEvents getter will update automatically
+  }
+
+  toggleDateRangePopup() {
+    this.showDateRangePopup = !this.showDateRangePopup;
+  }
+
+  applyDateRange() {
+    this.filterStartDate = this.dateRange.from;
+    this.filterEndDate = this.dateRange.to;
+    this.showDateRangePopup = false;
   }
 }

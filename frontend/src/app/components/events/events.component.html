@@ -9,9 +9,19 @@
         <option value="all">All Categories</option>
         <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
       </select>
+      <button class="date-range-btn search-btn visible-icon" (click)="toggleDateRangePopup()">
+        <span class="material-icons">date_range</span>
+      </button>
       <button class="search-btn visible-icon" (click)="applyFilter()">
         <span class="material-icons">search</span>
       </button>
+      <div class="date-range-popup" *ngIf="showDateRangePopup">
+        <label>From:</label>
+        <input type="date" [(ngModel)]="dateRange.from">
+        <label>To:</label>
+        <input type="date" [(ngModel)]="dateRange.to">
+        <button class="btn-submit" (click)="applyDateRange()">Apply</button>
+      </div>
     </div>
     <div class="actions-right">
       <button class="add-btn" (click)="openCreate()">+ Add New</button>

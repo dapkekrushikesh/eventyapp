@@ -44,6 +44,9 @@ export class EventsComponent {
   selectedCategory: string = 'all';
   categories = ['All', 'Music', 'Technology', 'Food', 'Sports', 'Arts'];
 
+  showDateRangePopup = false;
+  dateRange = { from: '', to: '' };
+
   constructor(private eventService: EventService, private router: Router) {
     this.load();
   }
@@ -106,6 +109,17 @@ export class EventsComponent {
       return;
     }
     this.isSubmitting = true;
+    // Strict validation: all fields required
+    const requiredFields = [
+      'title', 'description', 'date', 'time', 'location', 'price', 'capacity', 'imageUrl', 'category'
+    ];
+    for (const field of requiredFields) {
+      const value = (this.formModel as any)[field];
+      if (value === undefined || value === null || value === '' || (typeof value === 'number' && isNaN(value))) {
+        alert('All fields are mandatory. Please fill in the "' + field + '" field.');
+        return;
+      }
+    }
     // Ensure price and capacity are numbers
     const formModel = {
       ...this.formModel,
@@ -179,5 +193,16 @@ export class EventsComponent {
 
   goBack() {
     this.router.navigate(['/dashboard']);
+  }
+
+  toggleDateRangePopup() {
+    this.showDateRangePopup = !this.showDateRangePopup;
+  }
+
+  applyDateRange() {
+    this.filterStartDate = this.dateRange.from;
+    this.filterEndDate = this.dateRange.to;
+    this.showDateRangePopup = false;
+    this.applyFilter();
   }
 }
