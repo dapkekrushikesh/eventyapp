@@ -79,6 +79,12 @@
         <label>Category</label>
         <input [(ngModel)]="formModel.category" name="category">
 
+        <label>Image</label>
+        <input type="file" accept="image/*" (change)="onImageSelected($event)">
+        <div *ngIf="formModel.imageUrl" class="image-preview">
+          <img [src]="formModel.imageUrl" alt="Event Image" style="max-width: 100%; max-height: 120px; margin-bottom: 8px;">
+        </div>
+
         <div class="form-actions">
           <button type="button" class="btn-cancel" (click)="cancelForm()">Cancel</button>
           <button type="submit" class="btn-submit">{{ editingEvent ? 'Update' : 'Create' }}</button>

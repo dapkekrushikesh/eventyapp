@@ -118,4 +118,16 @@ export class EventsComponent {
     this.bookedEvents.unshift(e);
     alert(`Marked ${e.title} as booked (demo)`);
   }
+
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.formModel.imageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 }
