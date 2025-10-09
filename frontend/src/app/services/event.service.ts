@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Event } from '../models/event.model';
 import { environment } from '../../environments/environment';
 
@@ -69,7 +69,7 @@ export class EventService {
       httpParams = httpParams.set('limit', params.limit.toString());
     }
 
-    return this.http.get<ApiResponse<Event[]>>(`${this.apiUrl}/events`, { params: httpParams })
+    return this.http.get<ApiResponse<Event[]>>(`${this.apiUrl}/api/events`, { params: httpParams })
       .pipe(
         map(response => {
           const events = response.events || [];
@@ -92,7 +92,7 @@ export class EventService {
 
   // Get single event by ID
   get(id: string | number): Observable<Event | undefined> {
-    return this.http.get<ApiResponse<Event>>(`${this.apiUrl}/events/${id}`)
+    return this.http.get<ApiResponse<Event>>(`${this.apiUrl}/api/events/${id}`)
       .pipe(
         map(response => response.event),
         catchError(this.handleError)
@@ -106,13 +106,17 @@ export class EventService {
 
   // Create new event
   create(event: Omit<Event, 'id'>): Observable<Event> {
-    return this.http.post<ApiResponse<Event>>(`${this.apiUrl}/events`, event, this.getHttpOptions())
+    return this.http.post<ApiResponse<Event>>(`${this.apiUrl}/api/events`, event, this.getHttpOptions())
       .pipe(
         map(response => {
-          const newEvent = response.event!;
-          const currentEvents = this.eventsSubject.getValue();
-          this.eventsSubject.next([newEvent, ...currentEvents]);
-          return newEvent;
+          if (!response.event) {
+            throw new Error('Event creation failed: No event returned');
+          }
+          return response.event;
+        }),
+        tap(() => {
+          // Reload events after creation
+          this.loadEvents().subscribe();
         }),
         catchError(this.handleError)
       );
@@ -120,7 +124,7 @@ export class EventService {
 
   // Update existing event
   update(id: string | number, changes: Partial<Event>): Observable<Event> {
-    return this.http.put<ApiResponse<Event>>(`${this.apiUrl}/events/${id}`, changes, this.getHttpOptions())
+    return this.http.put<ApiResponse<Event>>(`${this.apiUrl}/api/events/${id}`, changes, this.getHttpOptions())
       .pipe(
         map(response => {
           const updatedEvent = response.event!;
@@ -138,7 +142,7 @@ export class EventService {
 
   // Delete event
   delete(id: string | number): Observable<boolean> {
-    return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/events/${id}`, this.getHttpOptions())
+    return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/api/events/${id}`, this.getHttpOptions())
       .pipe(
         map(() => {
           const currentEvents = this.eventsSubject.getValue();
