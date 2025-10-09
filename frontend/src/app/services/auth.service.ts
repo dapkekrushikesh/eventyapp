@@ -146,7 +146,25 @@ export class AuthService {
 
   // Check if user is authenticated
   isAuthenticated(): boolean {
-    return this.isAuthenticatedSubject.getValue();
+    // If already authenticated in memory, return true
+    if (this.isAuthenticatedSubject.getValue()) {
+      return true;
+    }
+    // Otherwise, check localStorage and restore if possible
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('currentUser');
+    if (token && userData) {
+      try {
+        const user = JSON.parse(userData);
+        this.currentUserSubject.next(user);
+        this.isAuthenticatedSubject.next(true);
+        return true;
+      } catch {
+        this.clearStoredAuth();
+        return false;
+      }
+    }
+    return false;
   }
 
   // Get user profile
