@@ -18,7 +18,7 @@ connectDB();
 app.use(cors({
   origin: [
     'http://localhost:4200',
-    'https://eventy-frontend.onrender.com',
+    'https://eventyapp-frontend.onrender.com',
     process.env.FRONTEND_URL
   ].filter(Boolean),
   credentials: true
