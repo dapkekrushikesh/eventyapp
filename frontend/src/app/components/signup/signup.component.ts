@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Custom Password Validators
 export class PasswordValidators {
@@ -66,7 +65,7 @@ export class PasswordValidators {
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BrowserAnimationsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
