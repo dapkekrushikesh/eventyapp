@@ -38,12 +38,19 @@
 
     <div class="form-group">
       <label for="password">Password 
-        <button type="button" class="password-help-btn" (click)="togglePasswordRules()">
-          {{ showPasswordRules ? '👁️' : '👁️‍🗨️' }}
+        <button type="button" class="password-help-btn"
+          (mousedown)="showPassword = true"
+          (mouseup)="showPassword = false"
+          (mouseleave)="showPassword = false"
+          (touchstart)="showPassword = true"
+          (touchend)="showPassword = false"
+          tabindex="-1"
+        >
+          {{ showPassword ? '🙈' : '👁️' }}
         </button>
       </label>
       <input 
-        type="password" 
+        [type]="showPassword ? 'text' : 'password'"
         id="password" 
         formControlName="password" 
         placeholder="Enter your password"
@@ -52,6 +59,8 @@
         [class.password-medium]="getPasswordStrength() === 'medium'"
         [class.password-strong]="getPasswordStrength() === 'strong'"
         [class.password-very-strong]="getPasswordStrength() === 'very-strong'"
+        (focus)="passwordFieldTouched = true"
+        (blur)="passwordFieldTouched = !!signupForm.get('password')?.dirty"
       >
       
       <!-- Password Strength Indicator -->
@@ -63,7 +72,7 @@
       </div>
 
       <!-- Password Requirements -->
-      <div class="password-requirements" *ngIf="showPasswordRules">
+      <div class="password-requirements" *ngIf="passwordFieldTouched">
         <h4>Password Requirements:</h4>
         <ul>
           <li *ngFor="let requirement of passwordRequirements" 

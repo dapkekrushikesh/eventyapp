@@ -74,6 +74,8 @@ export class SignupComponent {
   isLoading = false;
   errorMessage = '';
   showPasswordRules = false;
+  showPassword = false; // For hold-to-reveal password
+  passwordFieldTouched = false; // For showing password rules on touch
 
   // Password requirements for display
   passwordRequirements = [
