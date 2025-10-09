@@ -4,7 +4,7 @@ exports.createEvent = async (req, res) => {
   try {
     const event = new Event({ ...req.body, createdBy: req.user.id });
     await event.save();
-    res.json(event);
+    res.status(201).json({ success: true, event });
   } catch (err) {
     res.status(500).send('Server error');
   }
@@ -23,7 +23,7 @@ exports.getEvent = async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
     if (!event) return res.status(404).json({ msg: 'Event not found' });
-    res.json(event);
+    res.json({ success: true, event });
   } catch (err) {
     res.status(500).send('Server error');
   }
