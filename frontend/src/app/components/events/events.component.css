@@ -181,18 +181,23 @@
   background: #f5f8fa;
   color: #333;
 }
-.date-range-popup .btn-submit {
-  background: #0078d4;
+.date-range-popup .btn-submit,
+.date-range-popup .btn-clear {
+  background: #1976d2;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 7px 0;
-  font-size: 15px;
-  font-weight: 500;
+  border-radius: 4px;
+  padding: 4px 14px;
   cursor: pointer;
-  margin-top: 6px;
-  transition: background 0.2s;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
 }
-.date-range-popup .btn-submit:hover {
-  background: #005fa3;
+
+.date-range-popup .btn-clear {
+  margin-left: 8px;
+}
+
+.date-range-popup .btn-submit:hover,
+.date-range-popup .btn-clear:hover {
+  background: #1565c0;
 }
