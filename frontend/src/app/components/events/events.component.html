@@ -4,8 +4,8 @@
       <span class="material-icons">arrow_back</span> Back
     </button>
     <div class="search-bar">
-      <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" class="search-input" (input)="applyFilter()">
-      <select [(ngModel)]="selectedCategory" class="category-filter" (change)="applyFilter()">
+      <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" class="search-input">
+      <select [(ngModel)]="selectedCategory" class="category-filter">
         <option value="all">All Categories</option>
         <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
       </select>
