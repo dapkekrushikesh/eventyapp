@@ -190,15 +190,23 @@ export class DashboardComponent implements OnInit {
   }
 
   get filteredEvents(): Event[] {
+    if (!this.searchQuery.trim()) return this.events;
+    const query = this.searchQuery.toLowerCase();
     return this.events.filter(event => {
-      const matchesSearch = event.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                          event.description.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                          event.location.toLowerCase().includes(this.searchQuery.toLowerCase());
-      
-      const matchesCategory = this.selectedCategory.toLowerCase() === 'all' || 
-                            event.category.toLowerCase() === this.selectedCategory.toLowerCase();
-      
-      return matchesSearch && matchesCategory;
+      // Combine all event fields into a single string for generic search
+      const combined = [
+        event.title,
+        event.description,
+        event.location,
+        event.category,
+        event.organizer,
+        event.date,
+        event.time
+      ]
+      .filter(Boolean)
+      .join(' ') // join all fields
+      .toLowerCase();
+      return combined.includes(query);
     });
   }
 

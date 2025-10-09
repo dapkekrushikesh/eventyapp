@@ -43,7 +43,7 @@
       <div class="navbar-right">
         <div class="search-bar">
           <span class="material-icons">search</span>
-          <input type="text" placeholder="Search...">
+          <input type="text" placeholder="Search..." [(ngModel)]="searchQuery">
         </div>
         
         <div class="nav-actions">
@@ -138,7 +138,7 @@
 
       <!-- Events List -->
       <div class="events-row">
-        <div class="event-card" *ngFor="let event of events.slice(0, 3)">
+        <div class="event-card" *ngFor="let event of filteredEvents.slice(0, 3)">
           <div class="event-image">
             <img [src]="event.imageUrl" [alt]="event.title">
             <div class="event-date">
