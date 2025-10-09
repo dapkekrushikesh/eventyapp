@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
   currentUser: User | null = null;
   isLoadingEvents = false;
 
-  categories = ['All', 'Music', 'Technology', 'Food', 'Sports', 'Arts'];
+  categories: string[] = ['All'];
 
   // New property to control date range popup
   showDateRange = false;
@@ -87,6 +87,9 @@ export class DashboardComponent implements OnInit {
     // Subscribe to event changes for real-time updates
     this.eventService.events$.subscribe(events => {
       this.events = events;
+      // Update categories dynamically from events
+      const uniqueCategories = Array.from(new Set(events.map(e => e.category).filter(Boolean)));
+      this.categories = ['All', ...uniqueCategories];
     });
 
     // Add two demo events (if not already present)

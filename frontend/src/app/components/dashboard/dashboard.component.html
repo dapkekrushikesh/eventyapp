@@ -48,7 +48,7 @@
             <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
           </select>
           <button class="search-btn" (click)="applySearch()">
-            Search
+            <span class="material-icons">search</span>
           </button>
         </div>
         
@@ -144,7 +144,7 @@
 
       <!-- Events List -->
       <div class="events-row">
-        <div class="event-card" *ngFor="let event of filteredEvents.slice(0, 3)">
+        <div class="event-card" *ngFor="let event of filteredEvents">
           <div class="event-image">
             <img [src]="event.imageUrl" [alt]="event.title">
             <div class="event-date">
