@@ -5,6 +5,12 @@
     </button>
     <div class="search-center">
       <input type="text" [(ngModel)]="searchQuery" (input)="applyFilter()" placeholder="Search events by title, description or location...">
+      <input type="date" [(ngModel)]="filterStartDate" class="date-filter" (change)="applyFilter()" placeholder="From">
+      <input type="date" [(ngModel)]="filterEndDate" class="date-filter" (change)="applyFilter()" placeholder="To">
+      <select [(ngModel)]="selectedCategory" class="category-filter" (change)="applyFilter()">
+        <option value="all">All Categories</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+      </select>
     </div>
     <div class="actions-right">
       <button class="add-btn" (click)="openCreate()">+ Add New</button>

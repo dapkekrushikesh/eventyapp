@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
   isSidebarCollapsed = false;
   isProfileMenuOpen = false;
   searchQuery: string = '';
+  filterStartDate: string = '';
+  filterEndDate: string = '';
   selectedCategory: string = 'all';
   showBookingModal = false;
   selectedEvent: Event | null = null;
@@ -222,24 +224,32 @@ export class DashboardComponent implements OnInit {
   }
 
   get filteredEvents(): Event[] {
-    if (!this.searchQuery.trim()) return this.events;
-    const query = this.searchQuery.toLowerCase();
-    return this.events.filter(event => {
-      // Combine all event fields into a single string for generic search
-      const combined = [
-        event.title,
-        event.description,
-        event.location,
-        event.category,
-        event.organizer,
-        event.date,
-        event.time
-      ]
-      .filter(Boolean)
-      .join(' ') // join all fields
-      .toLowerCase();
-      return combined.includes(query);
-    });
+    let filtered = this.events;
+    if (this.searchQuery.trim()) {
+      const query = this.searchQuery.toLowerCase();
+      filtered = filtered.filter(event => {
+        const combined = [
+          event.title,
+          event.description,
+          event.location,
+          event.category,
+          event.organizer,
+          event.date,
+          event.time
+        ].filter(Boolean).join(' ').toLowerCase();
+        return combined.includes(query);
+      });
+    }
+    if (this.selectedCategory && this.selectedCategory !== 'all') {
+      filtered = filtered.filter(event => event.category?.toLowerCase() === this.selectedCategory.toLowerCase());
+    }
+    if (this.filterStartDate) {
+      filtered = filtered.filter(event => event.date >= this.filterStartDate);
+    }
+    if (this.filterEndDate) {
+      filtered = filtered.filter(event => event.date <= this.filterEndDate);
+    }
+    return filtered;
   }
 
   openBookingModal(event: Event) {
@@ -621,7 +631,7 @@ export class DashboardComponent implements OnInit {
   }
 
   applySearch() {
-    // This will trigger the filteredEvents getter to update
     this.searchQuery = this.searchQuery.trim();
+    // No-op: filteredEvents getter will update automatically
   }
 }

@@ -2,8 +2,43 @@
 .events-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
 .search-center { flex: 1; display:flex; justify-content:center }
 .search-center input { width: 60%; padding: 8px 12px; border-radius: 20px; border: 1px solid #ddd; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.search-center input[type="text"] {
+  border: none;
+  outline: none;
+  background: #f5f7fa;
+  padding: 8px 14px;
+  font-size: 15px;
+  border-radius: 20px;
+  min-width: 220px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  border: 1px solid #e0e0e0;
+}
+.search-center input[type="text"]:focus {
+  border: 1.5px solid #0078d4;
+  background: #fff;
+}
 .actions-right { width: 180px; display:flex; justify-content:flex-end }
 .add-btn { background:#0078d4; color:#fff; border:none; padding:10px 14px; border-radius:8px; font-weight:600; cursor:pointer }
+/* Back button styling */
+.back-btn {
+  background: #fff;
+  color: #0078d4;
+  border: 1.5px solid #0078d4;
+  border-radius: 20px;
+  padding: 7px 18px 7px 12px;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.back-btn:hover {
+  background: #0078d4;
+  color: #fff;
+}
 .events-main { display:flex; gap:20px }
 .events-list { flex:2; background:#fff; padding:16px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.04) }
 .booked-section { flex:1; background:#fafafa; padding:12px; border-radius:8px; height:fit-content }
@@ -28,3 +63,34 @@
 .form-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:12px }
 .btn-cancel { background:#f70606; border:1px solid #ddd; padding:8px 12px; border-radius:8px }
 .btn-submit { background:#05f111; color:#fff; border:none; padding:8px 12px; border-radius:8px }
+/* Date and category filter styling */
+.date-filter {
+  margin: 0 6px;
+  padding: 6px 10px;
+  border-radius: 18px;
+  border: 1px solid #e0e0e0;
+  background: #f5f7fa;
+  font-size: 15px;
+  min-width: 120px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: border 0.2s;
+}
+.date-filter:focus {
+  border: 1.5px solid #0078d4;
+  background: #fff;
+}
+.category-filter {
+  margin: 0 6px;
+  padding: 6px 10px;
+  border-radius: 18px;
+  border: 1px solid #e0e0e0;
+  background: #f5f7fa;
+  font-size: 15px;
+  min-width: 140px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: border 0.2s;
+}
+.category-filter:focus {
+  border: 1.5px solid #0078d4;
+  background: #fff;
+}

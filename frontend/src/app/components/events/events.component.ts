@@ -38,6 +38,12 @@ export class EventsComponent {
 
   isSubmitting = false;
 
+  // Filter properties
+  filterStartDate: string = '';
+  filterEndDate: string = '';
+  selectedCategory: string = 'all';
+  categories = ['All', 'Music', 'Technology', 'Food', 'Sports', 'Arts'];
+
   constructor(private eventService: EventService, private router: Router) {
     this.load();
   }
@@ -49,10 +55,22 @@ export class EventsComponent {
 
   applyFilter() {
     const q = this.searchQuery.trim().toLowerCase();
-    if (!q) this.filtered = [...this.events];
-    else this.filtered = this.events.filter(e => {
-      return e.title.toLowerCase().includes(q) || e.description.toLowerCase().includes(q) || e.location.toLowerCase().includes(q);
-    });
+    let filtered = [...this.events];
+    if (q) {
+      filtered = filtered.filter(e => {
+        return e.title.toLowerCase().includes(q) || e.description.toLowerCase().includes(q) || e.location.toLowerCase().includes(q);
+      });
+    }
+    if (this.selectedCategory && this.selectedCategory !== 'all') {
+      filtered = filtered.filter(e => e.category?.toLowerCase() === this.selectedCategory.toLowerCase());
+    }
+    if (this.filterStartDate) {
+      filtered = filtered.filter(e => e.date >= this.filterStartDate);
+    }
+    if (this.filterEndDate) {
+      filtered = filtered.filter(e => e.date <= this.filterEndDate);
+    }
+    this.filtered = filtered;
   }
 
   openCreate() {

@@ -37,7 +37,8 @@ exports.createEvent = async (req, res) => {
     });
 
     await event.save();
-    res.status(201).json(event);
+    // Wrap the event in an object for frontend compatibility
+    res.status(201).json({ success: true, event });
   } catch (err) {
     console.error('Create Event Error:', err);
     res.status(500).json({ error: 'Server error while creating event' });

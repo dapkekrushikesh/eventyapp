@@ -135,19 +135,39 @@
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: var(--primary-light);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  gap: 0.5rem;
+  background: #f5f7fa;
+  border-radius: 24px;
+  padding: 4px 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  border: 1px solid #e0e0e0;
+  margin-right: 18px;
 }
 
 .search-bar input {
   border: none;
-  background: none;
   outline: none;
-  font-size: 0.9rem;
-  color: var(--text-dark);
-  width: 200px;
+  background: transparent;
+  padding: 8px 10px;
+  font-size: 15px;
+  border-radius: 20px;
+  min-width: 180px;
+}
+
+.search-btn {
+  background: #0078d4;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  padding: 6px 14px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.search-btn:hover {
+  background: #005fa3;
 }
 
 .nav-actions {
@@ -536,14 +556,36 @@
   gap: 0.5rem;
 }
 
-.category-filter select {
-  flex: 1;
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  outline: none;
-  font-size: 1rem;
-  background-color: var(--white);
+/* Date and category filter styling */
+.date-filter {
+  margin: 0 6px;
+  padding: 6px 10px;
+  border-radius: 18px;
+  border: 1px solid #e0e0e0;
+  background: #f5f7fa;
+  font-size: 15px;
+  min-width: 120px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: border 0.2s;
+}
+.date-filter:focus {
+  border: 1.5px solid #0078d4;
+  background: #fff;
+}
+.category-filter {
+  margin: 0 6px;
+  padding: 6px 10px;
+  border-radius: 18px;
+  border: 1px solid #e0e0e0;
+  background: #f5f7fa;
+  font-size: 15px;
+  min-width: 140px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: border 0.2s;
+}
+.category-filter:focus {
+  border: 1.5px solid #0078d4;
+  background: #fff;
 }
 
 /* Events Grid */
