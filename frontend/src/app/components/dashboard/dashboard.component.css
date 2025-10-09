@@ -1,5 +1,3 @@
-
-
 .dashboard-container {
   display: flex;
   height: 100vh;
@@ -97,7 +95,7 @@
   overflow-y: auto;
 }
 
-/* --- NAVBAR & SEARCH BAR --- */
+/* Navbar Styles */
 .navbar {
   background-color: var(--white);
   padding: 1rem 2rem;
@@ -137,28 +135,24 @@
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 16px;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  padding: 10px 24px;
-  margin: 24px auto 32px auto;
-  max-width: 900px;
-  min-width: 320px;
-  position: relative;
+  background-color: var(--primary-light);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  gap: 0.5rem;
 }
 
-.search-input {
-  flex: 1 1 220px;
-  min-width: 180px;
-  max-width: 320px;
+.search-bar input {
   border: none;
   outline: none;
-  font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: #f5f7fa;
-  margin-right: 8px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  width: 200px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .search-btn {
@@ -169,7 +163,57 @@
   padding: 6px 14px;
   font-size: 15px;
   cursor: pointer;
-  transition: background 0.2s;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.icon-btn:hover {
+  color: var(--primary-color);
+}
+
+/* Custom tooltip styling */
+.icon-btn {
+  position: relative;
+}
+
+.icon-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.icon-btn[title]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.8);
+  z-index: 1001;
+  pointer-events: none;
+}
+
+/* Notification badge */
+.notification-badge {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
   display: flex;
   align-items: center;
   margin-left: 4px;
@@ -238,9 +282,20 @@
   margin: 0 8px;
   transition: background 0.2s, color 0.2s;
 }
-.date-range-btn:hover {
-  background: #0078d4;
-  color: #fff;
+
+.profile-btn:hover {
+  background-color: var(--primary-light);
+}
+
+.profile-btn img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.dropdown-icon {
+  color: var(--text-light);
+  font-size: 20px;
 }
 .date-range-popup {
   position: absolute;
