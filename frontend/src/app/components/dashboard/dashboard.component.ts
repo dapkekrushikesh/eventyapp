@@ -58,6 +58,10 @@ export class DashboardComponent implements OnInit {
 
   categories = ['All', 'Music', 'Technology', 'Food', 'Sports', 'Arts'];
 
+  // New property to control date range popup
+  showDateRange = false;
+  showFilterPopup = false;
+
   constructor(
     private router: Router,
     private eventService: EventService,

@@ -44,15 +44,31 @@
         <div class="search-bar">
           <span class="material-icons">search</span>
           <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" class="search-input">
-          <div class="date-range-box">
-            <input type="date" [(ngModel)]="filterStartDate" class="date-filter" placeholder="From">
-            <span class="date-separator">-</span>
-            <input type="date" [(ngModel)]="filterEndDate" class="date-filter" placeholder="To">
+          <button class="filter-btn" (click)="showFilterPopup = !showFilterPopup">
+            <span class="material-icons">filter_alt</span>
+            <span *ngIf="filterStartDate || filterEndDate || selectedCategory !== 'all'">
+              Filter: 
+              <span *ngIf="filterStartDate || filterEndDate">{{filterStartDate || 'From'}} - {{filterEndDate || 'To'}} </span>
+              <span *ngIf="selectedCategory !== 'all'">| {{selectedCategory}}</span>
+            </span>
+            <span *ngIf="!filterStartDate && !filterEndDate && selectedCategory === 'all'">Filters</span>
+          </button>
+          <div class="filter-popup" *ngIf="showFilterPopup">
+            <label>Date Range:</label>
+            <div class="date-range-fields">
+              <input type="date" [(ngModel)]="filterStartDate"> -
+              <input type="date" [(ngModel)]="filterEndDate">
+            </div>
+            <label>Category:</label>
+            <select [(ngModel)]="selectedCategory" class="category-filter">
+              <option value="all">All Categories</option>
+              <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+            </select>
+            <div class="popup-actions">
+              <button (click)="applySearch(); showFilterPopup=false">Apply</button>
+              <button (click)="filterStartDate=''; filterEndDate=''; selectedCategory='all'; applySearch(); showFilterPopup=false">Clear</button>
+            </div>
           </div>
-          <select [(ngModel)]="selectedCategory" class="category-filter">
-            <option value="all">All Categories</option>
-            <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
-          </select>
           <button class="search-btn" (click)="applySearch()">
             <span class="material-icons">search</span>
           </button>
