@@ -17,7 +17,8 @@ connectDB();
 // Middleware
 app.use(cors({
   origin: [
-    'http://localhost:4200',
+    'http://localhost:4200', // Angular default
+    'http://localhost:4201', // Alternate local port (if used)
     'https://eventyapp-frontend.onrender.com',
     process.env.FRONTEND_URL
   ].filter(Boolean),
