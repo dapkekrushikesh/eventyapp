@@ -80,6 +80,11 @@ export class DashboardComponent implements OnInit {
       }
     });
 
+    // Subscribe to event changes for real-time updates
+    this.eventService.events$.subscribe(events => {
+      this.events = events;
+    });
+
     // Add two demo events (if not already present)
     if (this.events.length === 0) {
       this.events.push(
@@ -112,7 +117,7 @@ export class DashboardComponent implements OnInit {
       );
     }
 
-    // Load events
+    // Initial load
     this.loadEvents();
   }
 

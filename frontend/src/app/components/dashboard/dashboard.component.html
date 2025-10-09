@@ -43,14 +43,17 @@
       <div class="navbar-right">
         <div class="search-bar">
           <span class="material-icons">search</span>
-          <input type="text" placeholder="Search..." [(ngModel)]="searchQuery">
-          <input type="date" [(ngModel)]="filterStartDate" class="date-filter" placeholder="From">
-          <input type="date" [(ngModel)]="filterEndDate" class="date-filter" placeholder="To">
+          <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" class="search-input">
+          <div class="date-range-box">
+            <input type="date" [(ngModel)]="filterStartDate" class="date-filter" placeholder="From">
+            <span class="date-separator">-</span>
+            <input type="date" [(ngModel)]="filterEndDate" class="date-filter" placeholder="To">
+          </div>
           <select [(ngModel)]="selectedCategory" class="category-filter">
             <option value="all">All Categories</option>
             <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
           </select>
-          <button class="search-btn" (click)="applySearch()" style="margin-left:4px;padding:4px 10px;vertical-align:middle;">
+          <button class="search-btn" (click)="applySearch()">
             <span class="material-icons">search</span>
           </button>
         </div>
