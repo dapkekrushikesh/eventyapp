@@ -37,8 +37,9 @@
     </div>
 
     <div class="button-group">
-      <button type="submit" class="login-button" [disabled]="!loginForm.valid">
-        Login
+      <button type="submit" class="login-button" [disabled]="!loginForm.valid || isLoading">
+        <span *ngIf="isLoading">Logging in...</span>
+        <span *ngIf="!isLoading">Login</span>
       </button>
       <!-- <button type="button" class="new-here-button" (click)="goToSignup()">
         New Here

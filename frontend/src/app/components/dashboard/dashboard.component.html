@@ -44,6 +44,9 @@
         <div class="search-bar">
           <span class="material-icons">search</span>
           <input type="text" placeholder="Search..." [(ngModel)]="searchQuery">
+          <button class="search-btn" (click)="applySearch()" style="margin-left:4px;padding:4px 10px;vertical-align:middle;">
+            <span class="material-icons">search</span>
+          </button>
         </div>
         
         <div class="nav-actions">

@@ -83,6 +83,13 @@ label {
   transition: all 0.2s ease;
 }
 
+.login-button[disabled], .login-button:disabled {
+  background: #bdbdbd !important;
+  color: #fff !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+
 .new-here-button {
   flex: 1;
   padding: 0.875rem;
@@ -99,12 +106,6 @@ label {
 .new-here-button:hover {
   background-color: var(--primary-color);
   color: var(--white);
-}
-
-.login-button:disabled {
-  background-color: var(--border-color);
-  color: var(--text-light);
-  cursor: not-allowed;
 }
 
 .login-button:hover:not(:disabled) {

@@ -109,8 +109,9 @@
       </div>
     </div>
 
-    <button type="submit" class="signup-button" [disabled]="!signupForm.valid">
-      Sign Up
+    <button type="submit" class="signup-button" [disabled]="!signupForm.valid || isLoading">
+      <span *ngIf="isLoading">Signing up...</span>
+      <span *ngIf="!isLoading">Sign Up</span>
     </button>
 
     <div class="login-link">

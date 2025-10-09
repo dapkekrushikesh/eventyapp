@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
           price: 499,
           capacity: 200,
           availableSeats: 120,
-          imageUrl: 'assets/images/event1.jpg',
+          imageUrl: 'images/event1.jpg',
           category: 'Music',
           organizer: 'Eventy Team'
         },
@@ -103,7 +103,7 @@ export class DashboardComponent implements OnInit {
           price: 999,
           capacity: 300,
           availableSeats: 250,
-          imageUrl: 'assets/images/tech-summit.jpg',
+          imageUrl: 'images/tech-summit.jpg',
           category: 'Technology',
           organizer: 'Eventy Team'
         }
@@ -496,8 +496,7 @@ export class DashboardComponent implements OnInit {
       if (this.qrUrl) {
         const img = await this.loadImage(this.qrUrl);
         // draw QR on right side
-        const qrSize = 260;
-        ctx.drawImage(img, width - qrSize - 20, 100, qrSize, qrSize);
+        ctx.drawImage(img, width - 260 - 20, 100, 260, 260);
       }
 
       // convert to data url and set for download link
@@ -619,5 +618,10 @@ export class DashboardComponent implements OnInit {
 
   goToEvents() {
     this.router.navigate(['/events']);
+  }
+
+  applySearch() {
+    // This will trigger the filteredEvents getter to update
+    this.searchQuery = this.searchQuery.trim();
   }
 }

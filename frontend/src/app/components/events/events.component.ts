@@ -36,6 +36,8 @@ export class EventsComponent {
     category: ''
   };
 
+  isSubmitting = false;
+
   constructor(private eventService: EventService, private router: Router) {
     this.load();
   }
@@ -73,20 +75,31 @@ export class EventsComponent {
   }
 
   submitForm() {
+    if (this.isSubmitting) return;
     // Basic validation
     if (!this.formModel.title || !this.formModel.date) {
       alert('Please provide title and date');
       return;
     }
-
+    // Prevent duplicate event titles
+    const title = (this.formModel.title || '').trim().toLowerCase();
+    if (this.events.some(e => e.title.trim().toLowerCase() === title && (!this.editingEvent || e._id !== this.editingEvent._id))) {
+      alert('An event with this title already exists. Please use a different title.');
+      return;
+    }
+    this.isSubmitting = true;
     if (this.editingEvent && this.editingEvent._id) {
       this.eventService.update(this.editingEvent._id, this.formModel as Partial<Event>).subscribe({
         next: () => {
           this.load();
           this.showForm = false;
           this.editingEvent = null;
+          this.isSubmitting = false;
         },
-        error: (error) => console.error('Update failed:', error)
+        error: (error: any) => {
+          this.isSubmitting = false;
+          alert('Update failed: ' + (error.message || error));
+        }
       });
     } else {
       this.eventService.create(this.formModel as Omit<Event, 'id'>).subscribe({
@@ -96,8 +109,12 @@ export class EventsComponent {
           this.load();
           this.showForm = false;
           this.editingEvent = null;
+          this.isSubmitting = false;
         },
-        error: (error) => console.error('Create failed:', error)
+        error: (error: any) => {
+          this.isSubmitting = false;
+          alert('Create failed: ' + (error.message || error));
+        }
       });
     }
   }
@@ -129,5 +146,9 @@ export class EventsComponent {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  goBack() {
+    this.router.navigate(['/dashboard']);
   }
 }

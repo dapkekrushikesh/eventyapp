@@ -1,5 +1,8 @@
 <div class="events-page">
   <div class="events-header">
+    <button class="back-btn" (click)="goBack()" style="margin-right:12px;display:inline-flex;align-items:center;gap:4px;">
+      <span class="material-icons">arrow_back</span> Back
+    </button>
     <div class="search-center">
       <input type="text" [(ngModel)]="searchQuery" (input)="applyFilter()" placeholder="Search events by title, description or location...">
     </div>
@@ -42,7 +45,7 @@
 
   <!-- Form Modal -->
   <div class="modal" *ngIf="showForm">
-    <div class="modal-content">
+    <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
       <h3>{{ editingEvent ? 'Update Event' : 'Create Event' }}</h3>
       <form (ngSubmit)="submitForm()">
         <label>Title</label>
