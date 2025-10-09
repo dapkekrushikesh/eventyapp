@@ -49,6 +49,10 @@
       Forgot Password?
     </button>
 
+    <div *ngIf="errorMessage" class="error-message" style="margin-top: 10px;">
+      {{ errorMessage }}
+    </div>
+
     <div class="signup-link">
       Don't have an account? 
       <button type="button" class="text-button" (click)="goToSignup()">

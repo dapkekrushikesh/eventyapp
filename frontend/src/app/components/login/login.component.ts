@@ -59,14 +59,15 @@ export class LoginComponent {
     if (email && this.loginForm.get('email')?.valid) {
       this.authService.forgotPassword(email).subscribe({
         next: (response) => {
+          this.errorMessage = '';
           alert(response.message || 'Password reset email sent');
         },
         error: (error) => {
-          alert(error.message || 'Failed to send password reset email');
+          this.errorMessage = error.message || 'Failed to send password reset email';
         }
       });
     } else {
-      alert('Please enter a valid email address');
+      this.errorMessage = 'Please enter a valid email address';
     }
   }
 
