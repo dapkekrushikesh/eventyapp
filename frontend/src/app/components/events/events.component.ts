@@ -106,8 +106,15 @@ export class EventsComponent {
       return;
     }
     this.isSubmitting = true;
+    // Ensure price and capacity are numbers
+    const formModel = {
+      ...this.formModel,
+      price: Number(this.formModel.price) || 0,
+      capacity: Number(this.formModel.capacity) || 1,
+      availableSeats: Number(this.formModel.capacity) || 1
+    };
     if (this.editingEvent && this.editingEvent._id) {
-      this.eventService.update(this.editingEvent._id, this.formModel as Partial<Event>).subscribe({
+      this.eventService.update(this.editingEvent._id, formModel as Partial<Event>).subscribe({
         next: () => {
           this.load();
           this.showForm = false;
@@ -120,7 +127,7 @@ export class EventsComponent {
         }
       });
     } else {
-      this.eventService.create(this.formModel as Omit<Event, 'id'>).subscribe({
+      this.eventService.create(formModel as Omit<Event, 'id'>).subscribe({
         next: (created) => {
           // For demo, mark any created event with price 0 as booked
           if ((created.price ?? 0) === 0) this.bookedEvents.unshift(created);
