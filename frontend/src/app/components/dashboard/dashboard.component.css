@@ -1,23 +1,4 @@
-html, body, .dashboard-container, .main-content {
-  overflow-x: hidden !important;
-  max-width: 100vw;
-}
 
-.dashboard-container {
-  width: 100vw;
-  box-sizing: border-box;
-}
-
-/* Fix for flex children overflowing */
-.main-content {
-  min-width: 0;
-}
-
-/* Remove margin/padding that could cause overflow */
-body {
-  margin: 0;
-  padding: 0;
-}
 
 .dashboard-container {
   display: flex;
