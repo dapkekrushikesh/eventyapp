@@ -124,6 +124,7 @@
   padding: 4px 12px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   gap: 8px;
+  position: relative;
 }
 
 .search-input {
@@ -151,8 +152,10 @@
 }
 .date-range-popup {
   position: absolute;
-  top: 48px;
+  left: auto;
   right: 0;
+  top: 100%;
+  margin-top: 6px;
   background: #fff;
   border: 1.5px solid #0078d4;
   border-radius: 14px;
