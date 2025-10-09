@@ -205,4 +205,11 @@ export class EventsComponent {
     this.showDateRangePopup = false;
     this.applyFilter();
   }
+
+  clearDateRange() {
+    this.dateRange = { from: '', to: '' };
+    this.filterStartDate = '';
+    this.filterEndDate = '';
+    this.showDateRangePopup = false;
+  }
 }

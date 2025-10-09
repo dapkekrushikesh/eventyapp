@@ -59,6 +59,7 @@
             <label>To:</label>
             <input type="date" [(ngModel)]="dateRange.to">
             <button class="btn-submit" (click)="applyDateRange()">Apply</button>
+            <button class="btn-clear" (click)="clearDateRange()">Clear</button>
           </div>
         </div>
         
@@ -150,6 +151,12 @@
           View More Events
           <span class="material-icons">arrow_forward</span>
         </button>
+      </div>
+
+      <!-- Date Range Indicator -->
+      <div *ngIf="dateRange.from && dateRange.to" class="date-range-indicator">
+        <span class="material-icons">filter_alt</span>
+        Showing events from <b>{{dateRange.from}}</b> to <b>{{dateRange.to}}</b>
       </div>
 
       <!-- Events List -->

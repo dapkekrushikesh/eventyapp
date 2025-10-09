@@ -658,4 +658,11 @@ export class DashboardComponent implements OnInit {
     this.filterEndDate = this.dateRange.to;
     this.showDateRangePopup = false;
   }
+
+  clearDateRange() {
+    this.dateRange = { from: '', to: '' };
+    this.filterStartDate = '';
+    this.filterEndDate = '';
+    this.showDateRangePopup = false;
+  }
 }
