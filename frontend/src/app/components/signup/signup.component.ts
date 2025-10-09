@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Custom Password Validators
@@ -94,8 +93,7 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder, 
     private router: Router,
-    private authService: AuthService,
-    private toastr: ToastrService
+    private authService: AuthService
   ) {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -138,7 +136,6 @@ export class SignupComponent {
         next: (response) => {
           this.isLoading = false;
           if (response.success) {
-            this.toastr.success('Signup successful! Please login.', 'Success');
             this.router.navigate(['/login']);
           } else {
             this.errorMessage = response.message || 'Registration failed';
