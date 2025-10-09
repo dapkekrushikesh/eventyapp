@@ -124,7 +124,11 @@ export class EventsComponent {
         next: (created) => {
           // For demo, mark any created event with price 0 as booked
           if ((created.price ?? 0) === 0) this.bookedEvents.unshift(created);
-          this.load();
+          // Reload events from backend and update local list
+          this.eventService.loadEvents().subscribe(events => {
+            this.events = events;
+            this.applyFilter();
+          });
           this.showForm = false;
           this.editingEvent = null;
           this.isSubmitting = false;
