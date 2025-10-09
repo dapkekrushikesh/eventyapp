@@ -42,27 +42,13 @@
       
       <div class="navbar-right">
         <div class="search-bar">
-          <span class="material-icons">search</span>
           <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" class="search-input">
-          <button class="date-range-btn" (click)="showDateRange = !showDateRange">
-            <span class="material-icons">date_range</span>
-            <span *ngIf="filterStartDate || filterEndDate">{{filterStartDate || 'From'}} - {{filterEndDate || 'To'}}</span>
-            <span *ngIf="!filterStartDate && !filterEndDate">Date Range</span>
-          </button>
-          <div class="date-range-popup" *ngIf="showDateRange">
-            <label>From: <input type="date" [(ngModel)]="filterStartDate"></label>
-            <label>To: <input type="date" [(ngModel)]="filterEndDate"></label>
-            <div class="popup-actions">
-              <button (click)="applySearch(); showDateRange=false">Apply</button>
-              <button (click)="filterStartDate=''; filterEndDate=''; applySearch(); showDateRange=false">Clear</button>
-            </div>
-          </div>
           <select [(ngModel)]="selectedCategory" class="category-filter">
             <option value="all">All Categories</option>
             <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
           </select>
           <button class="search-btn" (click)="applySearch()">
-            <span class="material-icons">search</span>
+            Search
           </button>
         </div>
         
