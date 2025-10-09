@@ -47,7 +47,7 @@
             <option value="all">All Categories</option>
             <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
           </select>
-          <button class="search-btn" (click)="applySearch()">
+          <button class="search-btn visible-icon" (click)="applySearch()">
             <span class="material-icons">search</span>
           </button>
         </div>
