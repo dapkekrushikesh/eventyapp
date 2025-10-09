@@ -226,20 +226,24 @@
 /* Date range box styling */
 .date-range-box {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  background: #e9eef6;
-  border-radius: 18px;
-  padding: 2px 8px;
-  margin: 0 8px;
-  gap: 4px;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background: #f8f9fa;
 }
 
-.date-filter {
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 6px 4px;
-  font-size: 15px;
+.dropdown-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.count-badge {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.2rem 0.5rem;
   border-radius: 12px;
   min-width: 100px;
 }
@@ -314,25 +318,150 @@
 }
 .date-range-popup label {
   font-size: 14px;
-  color: #333;
-  margin-bottom: 4px;
+}
+
+.dropdown-item:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.dropdown-item .material-icons {
+  font-size: 20px;
+  color: var(--text-light);
+}
+
+.dropdown-item:hover .material-icons {
+  color: var(--primary-color);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 0.5rem 0;
+}
+
+/* Dashboard Content Styles */
+.dashboard-content {
+  padding: 2rem;
+}
+
+.welcome-section {
+  margin-bottom: 2rem;
+}
+
+.welcome-section h2 {
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+  color: var(--text-light);
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 .popup-actions {
   display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  margin-top: 8px;
+  align-items: center;
+  justify-content: center;
 }
-.popup-actions button {
-  background: #0078d4;
-  color: #fff;
-  border: none;
+
+.card-content h3 {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.card-value {
+  color: var(--text-dark);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Event Controls */
+.event-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 2;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  padding: 0.75rem 1rem;
   border-radius: 8px;
-  padding: 6px 14px;
-  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+
+.category-filter {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-filter select {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--white);
+}
+
+/* Events Grid */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.view-more-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
 }
