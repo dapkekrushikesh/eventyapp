@@ -102,7 +102,7 @@ export class AuthService {
 
   // Register new user
   register(userData: RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/register`, userData)
+    return this.http.post<AuthResponse>(`${this.apiUrl}/api/auth/register`, userData)
       .pipe(
         tap(response => {
           if (response.success && response.token && response.user) {
@@ -119,7 +119,7 @@ export class AuthService {
 
   // Login user
   login(credentials: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, credentials)
+    return this.http.post<AuthResponse>(`${this.apiUrl}/api/auth/login`, credentials)
       .pipe(
         tap(response => {
           if (response.success && response.token && response.user) {
@@ -151,7 +151,7 @@ export class AuthService {
 
   // Get user profile
   getProfile(): Observable<User> {
-    return this.http.get<{success: boolean, user: User}>(`${this.apiUrl}/auth/profile`, this.getHttpOptions())
+    return this.http.get<{success: boolean, user: User}>(`${this.apiUrl}/api/auth/profile`, this.getHttpOptions())
       .pipe(
         map(response => response.user),
         tap(user => {
@@ -164,7 +164,7 @@ export class AuthService {
 
   // Update user profile
   updateProfile(profileData: Partial<User>): Observable<User> {
-    return this.http.put<{success: boolean, user: User}>(`${this.apiUrl}/auth/profile`, profileData, this.getHttpOptions())
+    return this.http.put<{success: boolean, user: User}>(`${this.apiUrl}/api/auth/profile`, profileData, this.getHttpOptions())
       .pipe(
         map(response => response.user),
         tap(user => {
@@ -178,7 +178,7 @@ export class AuthService {
   // Change password
   changePassword(currentPassword: string, newPassword: string): Observable<{success: boolean, message: string}> {
     const passwordData = { currentPassword, newPassword };
-    return this.http.put<{success: boolean, message: string}>(`${this.apiUrl}/auth/change-password`, passwordData, this.getHttpOptions())
+    return this.http.put<{success: boolean, message: string}>(`${this.apiUrl}/api/auth/change-password`, passwordData, this.getHttpOptions())
       .pipe(
         catchError(this.handleError)
       );
@@ -186,7 +186,7 @@ export class AuthService {
 
   // Forgot password
   forgotPassword(email: string): Observable<{success: boolean, message: string}> {
-    return this.http.post<{success: boolean, message: string}>(`${this.apiUrl}/auth/forgot-password`, { email })
+    return this.http.post<{success: boolean, message: string}>(`${this.apiUrl}/api/auth/forgot-password`, { email })
       .pipe(
         catchError(this.handleError)
       );
@@ -194,7 +194,7 @@ export class AuthService {
 
   // Reset password
   resetPassword(token: string, password: string): Observable<{success: boolean, message: string}> {
-    return this.http.post<{success: boolean, message: string}>(`${this.apiUrl}/auth/reset-password/${token}`, { password })
+    return this.http.post<{success: boolean, message: string}>(`${this.apiUrl}/api/auth/reset-password/${token}`, { password })
       .pipe(
         catchError(this.handleError)
       );
