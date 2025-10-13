@@ -72,13 +72,12 @@
       </div>
 
       <!-- Password Requirements -->
-      <div class="password-requirements" *ngIf="passwordFieldTouched">
+      <div class="password-requirements" *ngIf="passwordFieldTouched && signupForm.get('password')?.value">
         <h4>Password Requirements:</h4>
         <ul>
           <li *ngFor="let requirement of passwordRequirements" 
               [class.met]="requirement.met" 
               [class.not-met]="!requirement.met">
-            <span>{{ requirement.met ? '✅' : '❌' }}</span>
             {{ requirement.rule }}
           </li>
         </ul>
