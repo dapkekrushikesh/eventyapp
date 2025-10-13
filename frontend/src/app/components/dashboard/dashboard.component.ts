@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit {
 
   events: Event[] = [];
   currentUser: User | null = null;
+  isAdmin: boolean = false;
   isLoadingEvents = false;
 
   categories: string[] = ['All'];
@@ -80,6 +81,7 @@ export class DashboardComponent implements OnInit {
     // Subscribe to current user
     this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
+      this.isAdmin = user?.role === 'admin';
       if (user) {
         this.displayName = user.displayName || user.name || 'New User';
         this.profileImageUrl = user.profileImageUrl || 'images/profile-img.png';

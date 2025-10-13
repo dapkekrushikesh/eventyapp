@@ -83,7 +83,8 @@ label {
   transition: all 0.2s ease;
 }
 
-.login-button[disabled], .login-button:disabled {
+.login-button[disabled],
+.login-button:disabled {
   background: #bdbdbd !important;
   color: #fff !important;
   cursor: not-allowed !important;

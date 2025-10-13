@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,11 @@ export const routes: Routes = [
     path: 'events',
     loadComponent: () => import('./components/events/events.component').then(m => m.EventsComponent),
     canActivate: [authGuard]
+  },
+  {
+    path: 'event-create',
+    loadComponent: () => import('./components/events/events.component').then(m => m.EventsComponent),
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'profile-settings',

@@ -13,6 +13,7 @@ export interface User {
   phone?: string;
   dateOfBirth?: string;
   address?: string;
+  role?: string; // 'admin' or 'user'
 }
 
 export interface AuthResponse {

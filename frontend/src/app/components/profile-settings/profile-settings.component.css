@@ -131,12 +131,14 @@
 .form-group {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1.25rem;
 }
 
 .form-group label {
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #2c3e50;
+  display: block;
 }
 
 .form-input {
@@ -155,12 +157,10 @@
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.action-buttons {
+.button-group {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
-  padding-top: 2rem;
-  border-top: 1px solid #e9ecef;
+  margin-top: 1.5rem;
 }
 
 .cancel-button, .save-button {
@@ -187,21 +187,19 @@
 }
 
 .save-button {
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-  color: white;
+  padding: 0.875rem 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.save-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
-}
-
-.save-button:disabled {
-  background: #e9ecef;
-  color: #6c757d;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+.save-button:hover {
+  background-color: var(--primary-hover);
 }
 
 /* Responsive Design */

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../services/event.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-events',
@@ -37,6 +38,7 @@ export class EventsComponent {
   };
 
   isSubmitting = false;
+  isAdmin: boolean = false;
 
   // Filter properties
   filterStartDate: string = '';
@@ -47,7 +49,10 @@ export class EventsComponent {
   showDateRangePopup = false;
   dateRange = { from: '', to: '' };
 
-  constructor(private eventService: EventService, private router: Router) {
+  constructor(private eventService: EventService, private router: Router, private authService: AuthService) {
+    this.authService.currentUser$.subscribe(user => {
+      this.isAdmin = user?.role === 'admin';
+    });
     this.load();
   }
 
@@ -77,6 +82,7 @@ export class EventsComponent {
   }
 
   openCreate() {
+    if (!this.isAdmin) return;
     this.editingEvent = null;
     this.formModel = {
       title: '', description: '', date: '', time: '', location: '', price: 0, capacity: 0, availableSeats: 0, imageUrl: '', category: ''

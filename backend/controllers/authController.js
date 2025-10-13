@@ -27,7 +27,8 @@ exports.register = async (req, res) => {
       name, 
       email, 
       password,
-      displayName: name 
+      displayName: name,
+      role: req.body.role && req.body.role === 'admin' ? 'admin' : 'user' // allow admin creation if specified
     });
 
     // Hash password
@@ -59,7 +60,8 @@ exports.register = async (req, res) => {
           name: user.name,
           email: user.email,
           displayName: user.displayName,
-          profileImageUrl: user.profileImageUrl
+          profileImageUrl: user.profileImageUrl,
+          role: user.role
         }
       });
     });
@@ -124,7 +126,8 @@ exports.login = async (req, res) => {
           name: user.name,
           email: user.email,
           displayName: user.displayName,
-          profileImageUrl: user.profileImageUrl
+          profileImageUrl: user.profileImageUrl,
+          role: user.role
         }
       });
     });
