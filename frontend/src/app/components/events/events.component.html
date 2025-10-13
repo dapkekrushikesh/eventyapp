@@ -106,6 +106,24 @@
           <img [src]="formModel.imageUrl" alt="Event Image" style="max-width: 100%; max-height: 120px; margin-bottom: 8px;">
         </div>
 
+        <!-- Event Card Preview -->
+        <div class="event-card-preview-container">
+          <div class="event-item">
+            <div class="left">
+              <img [src]="formModel.imageUrl || 'images/event1.jpg'" alt="{{formModel.title}}">
+            </div>
+            <div class="body">
+              <h4>{{formModel.title || 'Event Title'}}</h4>
+              <p class="meta">{{formModel.date || 'YYYY-MM-DD'}} • {{formModel.time || 'HH:MM'}} • {{formModel.location || 'Location'}}</p>
+              <p class="desc">{{formModel.description || 'Event description...'}}</p>
+            </div>
+            <div class="right">
+              <div class="price">₹{{formModel.price || '0'}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- End Event Card Preview -->
+
         <div class="form-actions">
           <button type="button" class="btn-cancel" (click)="cancelForm()">Cancel</button>
           <button type="submit" class="btn-submit">{{ editingEvent ? 'Update' : 'Create' }}</button>
