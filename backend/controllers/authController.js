@@ -23,14 +23,16 @@ exports.register = async (req, res) => {
     }
 
     // Create new user
-    user = new User({ 
+    const userData = { 
       name, 
       email, 
       password,
-      displayName: name,
-      // Accept role from frontend, case-insensitive, fallback to 'user'
-      role: req.body.role && req.body.role.toLowerCase() === 'admin' ? 'admin' : 'user'
-    });
+      displayName: name
+    };
+    if (req.body.role && ['admin', 'user'].includes(req.body.role.toLowerCase())) {
+      userData.role = req.body.role.toLowerCase();
+    }
+    user = new User(userData);
 
     // Hash password
     const salt = await bcrypt.genSalt(10);
@@ -43,8 +45,8 @@ exports.register = async (req, res) => {
       user: { 
         id: user.id,
         email: user.email,
-        name: user.name
-      
+        name: user.name,
+        role: user.role
       } 
     };
 
@@ -110,7 +112,8 @@ exports.login = async (req, res) => {
       user: { 
         id: user.id,
         email: user.email,
-        name: user.name
+        name: user.name,
+        role: user.role
       } 
     };
 

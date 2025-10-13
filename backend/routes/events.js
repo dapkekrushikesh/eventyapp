@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator');
 const auth = require('../config/auth');
+const role = require('../middleware/role');
 const {
   createEvent,
   getEvents,
@@ -28,9 +29,9 @@ router.get('/', getEvents);                          // Get all events with filt
 router.get('/category/:category', getEventsByCategory); // Get events by category
 router.get('/:id', getEvent);                        // Get single event
 
-// Protected routes (optional authentication - events can be created by guests too)
-router.post('/', eventValidation, createEvent);      // Create event
-router.put('/:id', eventValidation, updateEvent);    // Update event  
-router.delete('/:id', deleteEvent);                  // Delete event
+// Protected routes (admin only)
+router.post('/', auth, role('admin'), eventValidation, createEvent);      // Create event
+router.put('/:id', auth, role('admin'), eventValidation, updateEvent);    // Update event  
+router.delete('/:id', auth, role('admin'), deleteEvent);                  // Delete event
 
 module.exports = router;
