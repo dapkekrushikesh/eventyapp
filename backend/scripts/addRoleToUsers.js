@@ -9,10 +9,10 @@ const User = require('./models/User');
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(async () => {
     const result = await User.updateMany(
-      { role: { $exists: false } },
+      { $or: [ { role: { $exists: false } }, { role: null } ] },
       { $set: { role: 'user' } }
     );
-    console.log('Users updated:', result.nModified);
+    console.log('Users updated:', result.nModified || result.modifiedCount);
     mongoose.disconnect();
   })
   .catch(err => {
