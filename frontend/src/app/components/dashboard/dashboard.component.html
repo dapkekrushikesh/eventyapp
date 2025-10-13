@@ -18,7 +18,7 @@
             <span class="nav-text">Dashboard</span>
           </a>
         </li>
-        <li>
+        <li *ngIf="isAdmin">
           <a routerLink="/events" routerLinkActive="active" class="nav-item">
             <span class="material-icons">event</span>
             <span class="nav-text">Events</span>

@@ -28,7 +28,8 @@ exports.register = async (req, res) => {
       email, 
       password,
       displayName: name,
-      role: req.body.role && req.body.role === 'admin' ? 'admin' : 'user' // allow admin creation if specified
+      // Accept role from frontend, case-insensitive, fallback to 'user'
+      role: req.body.role && req.body.role.toLowerCase() === 'admin' ? 'admin' : 'user'
     });
 
     // Hash password
