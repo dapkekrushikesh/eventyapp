@@ -79,14 +79,14 @@ export class SignupComponent {
 
   // Password requirements for display
   passwordRequirements = [
-    { rule: 'At least 8 characters long', met: false },
-    { rule: 'Maximum 128 characters', met: false },
-    { rule: 'At least one lowercase letter (a-z)', met: false },
-    { rule: 'At least one uppercase letter (A-Z)', met: false },
-    { rule: 'At least one number (0-9)', met: false },
-    { rule: 'At least one special character (!@#$%^&*)', met: false },
-    { rule: 'No spaces allowed', met: false },
-    { rule: 'No more than 2 consecutive repeated characters', met: false }
+    { rule: 'At least 8 characters long', met: false, key: 'minLength' },
+    { rule: 'Maximum 128 characters', met: false, key: 'maxLength' },
+    { rule: 'At least one lowercase letter (a-z)', met: false, key: 'lowercase' },
+    { rule: 'At least one uppercase letter (A-Z)', met: false, key: 'uppercase' },
+    { rule: 'At least one number (0-9)', met: false, key: 'digit' },
+    { rule: 'At least one special character (!@#$%^&*)', met: false, key: 'specialChar' },
+    { rule: 'No spaces allowed', met: false, key: 'noSpaces' },
+    { rule: 'No more than 2 consecutive repeated characters', met: false, key: 'repeatedChars' }
   ];
 
   constructor(
