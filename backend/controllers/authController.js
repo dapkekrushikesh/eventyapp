@@ -23,6 +23,7 @@ exports.register = async (req, res) => {
     }
 
     // Create new user
+    console.log('REGISTER BODY:', req.body); // Debug: log incoming registration data
     const userData = { 
       name, 
       email, 

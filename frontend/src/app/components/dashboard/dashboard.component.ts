@@ -80,6 +80,7 @@ export class DashboardComponent implements OnInit {
 
     // Subscribe to current user
     this.authService.currentUser$.subscribe(user => {
+      console.log('Current user:', user); // Debug: check user and role
       this.currentUser = user;
       this.isAdmin = user?.role === 'admin';
       if (user) {
