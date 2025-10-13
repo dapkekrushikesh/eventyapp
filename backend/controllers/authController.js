@@ -14,7 +14,12 @@ exports.register = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
+
+    // Validate role
+    if (typeof role !== 'string' || !['admin', 'user'].includes(role.toLowerCase())) {
+      return res.status(400).json({ msg: 'Role is required and must be either "admin" or "user".' });
+    }
 
     // Check if user already exists
     let user = await User.findOne({ email });
@@ -23,16 +28,13 @@ exports.register = async (req, res) => {
     }
 
     // Create new user
-    // Remove debug log and ensure role is always set if present
     const userData = { 
       name, 
       email, 
       password,
-      displayName: name
+      displayName: name,
+      role: role.toLowerCase()
     };
-    if (typeof req.body.role === 'string' && ['admin', 'user'].includes(req.body.role.toLowerCase())) {
-      userData.role = req.body.role.toLowerCase();
-    }
     user = new User(userData);
 
     // Hash password
