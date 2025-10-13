@@ -98,7 +98,8 @@ export class SignupComponent {
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, PasswordValidators.strongPassword()]],
-      confirmPassword: ['', [Validators.required]]
+      confirmPassword: ['', [Validators.required]],
+      role: ['user', [Validators.required]]
     }, {
       validators: this.passwordMatchValidator
     });
@@ -128,7 +129,8 @@ export class SignupComponent {
       const userData = {
         name: this.signupForm.get('name')?.value,
         email: this.signupForm.get('email')?.value,
-        password: this.signupForm.get('password')?.value
+        password: this.signupForm.get('password')?.value,
+        role: this.signupForm.get('role')?.value
       };
 
       this.authService.register(userData).subscribe({

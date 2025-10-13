@@ -24,7 +24,12 @@
             <span class="nav-text">Events</span>
           </a>
         </li>
-
+        <li *ngIf="isAdmin">
+          <a routerLink="/event-create" routerLinkActive="active" class="nav-item">
+            <span class="material-icons">add_circle</span>
+            <span class="nav-text">Create Event</span>
+          </a>
+        </li>
       </ul>
     </nav>
     <div class="copyright" style="position: absolute; bottom: 20px; left: 20px; color: #666; font-size: 12px;">
