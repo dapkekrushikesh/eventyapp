@@ -109,6 +109,17 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select id="role" formControlName="role" class="form-control">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+      <div class="error-message" *ngIf="signupForm.get('role')?.errors?.['required'] && signupForm.get('role')?.touched">
+        Role is required
+      </div>
+    </div>
+
     <button type="submit" class="signup-button" [disabled]="!signupForm.valid || isLoading">
       <span *ngIf="isLoading">Signing up...</span>
       <span *ngIf="!isLoading">Sign Up</span>
