@@ -23,14 +23,14 @@ exports.register = async (req, res) => {
     }
 
     // Create new user
-    console.log('REGISTER BODY:', req.body); // Debug: log incoming registration data
+    // Remove debug log and ensure role is always set if present
     const userData = { 
       name, 
       email, 
       password,
       displayName: name
     };
-    if (req.body.role && ['admin', 'user'].includes(req.body.role.toLowerCase())) {
+    if (typeof req.body.role === 'string' && ['admin', 'user'].includes(req.body.role.toLowerCase())) {
       userData.role = req.body.role.toLowerCase();
     }
     user = new User(userData);
