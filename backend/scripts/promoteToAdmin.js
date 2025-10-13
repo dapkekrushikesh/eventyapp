@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/User');
 
-const uri = 'mongodb+srv://dapkerushikesh:123456@eventy.l1rvzct.mongodb.net/eventy'; // Change to your DB name/connection string
+const uri = 'mongodb+srv://dapkerushikesh:123456@eventy.l1rvzct.mongodb.net/?retryWrites=true&w=majority&appName=eventy';
 
 const email = process.argv[2];
 if (!email) {
