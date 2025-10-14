@@ -307,6 +307,7 @@ export class DashboardComponent implements OnInit {
   cardCvv: string = '';
 
   selectedWalletApp: string = '';
+  walletCreds: string = '';
   upiId: string = '';
   netbankUser: string = '';
   netbankPassword: string = '';
@@ -379,7 +380,22 @@ export class DashboardComponent implements OnInit {
       this.paymentError = 'Enter card expiry month and year.';
       return;
     }
-
+    // Card expiry validation
+    const expMonth = parseInt(this.cardExpiryMonth, 10);
+    const expYear = parseInt(this.cardExpiryYear, 10);
+    if (isNaN(expMonth) || isNaN(expYear) || expMonth < 1 || expMonth > 12) {
+      this.paymentError = 'Enter a valid expiry month (01-12) and year.';
+      return;
+    }
+    const now = new Date();
+    const cardExpDate = new Date(expYear, expMonth - 1, 1);
+    // Set to last day of expiry month
+    cardExpDate.setMonth(cardExpDate.getMonth() + 1);
+    cardExpDate.setDate(0);
+    if (cardExpDate < new Date(now.getFullYear(), now.getMonth(), 1)) {
+      this.paymentError = 'Card is expired. Please use a valid card.';
+      return;
+    }
     // simulate verification with gateway
     this.paymentProcessing = true;
     try {
@@ -392,15 +408,32 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // Wallet: select an app then go to confirm
+  // Wallet: select an app then show credential input
   selectWalletApp(app: string) {
     this.selectedWalletApp = app;
-    // pretend to open app and verify
+    this.walletCreds = '';
+    this.paymentError = '';
+    // Do not proceed to confirm yet; wait for user to enter creds and confirm
+  }
+
+  // Wallet: verify entered creds and proceed
+  verifyWalletAndProceed() {
+    this.paymentError = '';
+    if (!this.walletCreds || (this.selectedWalletApp !== 'bhim' && !/^\d{10}$/.test(this.walletCreds))) {
+      this.paymentError = this.selectedWalletApp === 'bhim'
+        ? 'Enter a valid UPI ID.'
+        : 'Enter a valid 10-digit mobile number.';
+      return;
+    }
+    if (this.selectedWalletApp === 'bhim' && !this.walletCreds.includes('@')) {
+      this.paymentError = 'Enter a valid BHIM UPI ID (e.g. name@bank).';
+      return;
+    }
     this.paymentProcessing = true;
     setTimeout(() => {
       this.paymentProcessing = false;
       this.paymentStep = 'confirm';
-      this.selectedPaymentMethod = `wallet:${app}`;
+      this.selectedPaymentMethod = `wallet:${this.selectedWalletApp}:${this.walletCreds}`;
     }, 700);
   }
 
@@ -667,5 +700,17 @@ export class DashboardComponent implements OnInit {
     this.filterStartDate = '';
     this.filterEndDate = '';
     this.showDateRangePopup = false;
+  }
+
+  // Returns a string of seat numbers for the current booking (sequential, demo only)
+  getSeatNumbers(): string {
+    if (!this.selectedEvent || !this.selectedEvent.capacity) return '';
+    // For demo: assign next available seats (not persistent)
+    const start = this.selectedEvent.capacity - (this.selectedEvent.availableSeats || 0) + 1;
+    const end = start + this.ticketCount - 1;
+    if (start > end) return '';
+    const seats = [];
+    for (let i = start; i <= end; i++) seats.push(i);
+    return seats.join(', ');
   }
 }
