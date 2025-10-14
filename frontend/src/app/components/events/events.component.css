@@ -533,7 +533,7 @@
 }
 
 .modal-content {
-  background: #fff;
+  background: var(--white, #fff);
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
   padding: 32px 28px 24px 28px;
@@ -541,6 +541,7 @@
   width: 100%;
   position: relative;
   animation: modalFadeIn 0.25s;
+  border: 1.5px solid var(--primary-light, #e9eef3);
 }
 
 @keyframes modalFadeIn {
@@ -551,7 +552,7 @@
 .modal-content h3 {
   margin-top: 0;
   margin-bottom: 18px;
-  color: #1976d2;
+  color: var(--primary-color, #1976d2);
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -560,7 +561,7 @@
 .modal-content label {
   display: block;
   margin-bottom: 6px;
-  color: #333;
+  color: var(--text-dark, #333);
   font-weight: 500;
   font-size: 15px;
 }
@@ -574,11 +575,11 @@
   width: 100%;
   padding: 8px 10px;
   margin-bottom: 14px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color, #e0e0e0);
   border-radius: 8px;
   font-size: 15px;
   background: #f5f8fa;
-  color: #222;
+  color: var(--text-dark, #222);
   box-sizing: border-box;
   transition: border 0.2s;
 }
@@ -590,7 +591,7 @@
 
 .modal-content input:focus,
 .modal-content textarea:focus {
-  border: 1.5px solid #1976d2;
+  border: 1.5px solid var(--primary-color, #1976d2);
   outline: none;
   background: #fff;
 }
@@ -632,8 +633,8 @@
 }
 
 .btn-cancel {
-  background: #e0e0e0;
-  color: #333;
+  background: var(--border-color, #e0e0e0);
+  color: var(--text-dark, #333);
 }
 
 .btn-cancel:hover {
@@ -641,7 +642,7 @@
 }
 
 .btn-submit {
-  background: #1976d2;
+  background: var(--primary-color, #1976d2);
   color: #fff;
 }
 
