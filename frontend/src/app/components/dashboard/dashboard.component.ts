@@ -97,39 +97,7 @@ export class DashboardComponent implements OnInit {
       this.categories = ['All', ...uniqueCategories];
     });
 
-    // Add two demo events (if not already present)
-    if (this.events.length === 0) {
-      this.events.push(
-        {
-          title: 'Music Fiesta',
-          description: 'A grand music festival with live bands and DJs.',
-          date: '2025-11-15',
-          time: '18:00',
-          location: 'Pune',
-          price: 499,
-          capacity: 200,
-          availableSeats: 120,
-          imageUrl: 'images/event1.jpg',
-          category: 'Music',
-          organizer: 'Eventy Team'
-        },
-        {
-          title: 'Tech Summit 2025',
-          description: 'Join the biggest technology summit with top speakers and workshops.',
-          date: '2025-12-05',
-          time: '10:00',
-          location: 'Pune',
-          price: 999,
-          capacity: 300,
-          availableSeats: 250,
-          imageUrl: 'images/tech-summit.jpg',
-          category: 'Technology',
-          organizer: 'Eventy Team'
-        }
-      );
-    }
-
-    // Initial load
+    // Removed demo events. Only load from backend.
     this.loadEvents();
   }
 
