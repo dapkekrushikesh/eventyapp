@@ -241,12 +241,6 @@
   box-shadow: none;
 }
 
-.form-input{
-  height: 20px;
-  background-color: #00b3ff7e;
-  border-radius: 1px solid rgba(0, 0, 0, 0.452);
-}
-
 .event-card-preview-container .event-item {
   background: #fff;
   border-radius: 12px;
@@ -587,6 +581,25 @@
 .modal-content input[type="number"],
 .modal-content input[type="file"],
 .modal-content textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border: 2px solid var(--primary-light, #e9eef3);
+  border-radius: 12px;
+  font-size: 16px;
+  background: #f5f8fa;
+  color: var(--text-dark, #222);
+  box-sizing: border-box;
+  transition: border 0.2s, box-shadow 0.2s;
+  appearance: none;
+  font-family: inherit;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* Explicitly target the category input if it is type text */
+.modal-content input[name="category"],
+.modal-content input[name="title"],
+.modal-content input[name="location"] {
   width: 100%;
   padding: 14px 16px;
   margin-bottom: 18px;
