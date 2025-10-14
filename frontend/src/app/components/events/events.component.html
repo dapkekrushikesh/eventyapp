@@ -60,75 +60,75 @@
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Form Modal -->
-  <div class="modal" *ngIf="showForm">
-    <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
-      <h3>{{ editingEvent ? 'Update Event' : 'Create Event' }}</h3>
-      <form (ngSubmit)="submitForm()">
-        <label>Title</label>
-        <input [(ngModel)]="formModel.title" name="title">
+<!-- Form Modal (moved outside .events-page for overlay effect) -->
+<div class="modal" *ngIf="showForm">
+  <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+    <h3>{{ editingEvent ? 'Update Event' : 'Create Event' }}</h3>
+    <form (ngSubmit)="submitForm()">
+      <label>Title</label>
+      <input [(ngModel)]="formModel.title" name="title">
 
-        <label>Description</label>
-        <textarea [(ngModel)]="formModel.description" name="description"></textarea>
+      <label>Description</label>
+      <textarea [(ngModel)]="formModel.description" name="description"></textarea>
 
-        <div class="row">
-          <div>
-            <label>Date</label>
-            <input type="date" [(ngModel)]="formModel.date" name="date">
+      <div class="row">
+        <div>
+          <label>Date</label>
+          <input type="date" [(ngModel)]="formModel.date" name="date">
+        </div>
+        <div>
+          <label>Time</label>
+          <input type="time" [(ngModel)]="formModel.time" name="time">
+        </div>
+      </div>
+
+      <label>Location</label>
+      <input [(ngModel)]="formModel.location" name="location">
+
+      <div class="row">
+        <div>
+          <label>Price (₹)</label>
+          <input type="number" [(ngModel)]="formModel.price" name="price" placeholder="Enter amount in ₹">
+        </div>
+        <div>
+          <label>Capacity</label>
+          <input type="number" [(ngModel)]="formModel.capacity" name="capacity">
+        </div>
+      </div>
+
+      <label>Category</label>
+      <input [(ngModel)]="formModel.category" name="category">
+
+      <label>Image</label>
+      <input type="file" accept="image/*" (change)="onImageSelected($event)">
+      <div *ngIf="formModel.imageUrl" class="image-preview">
+        <img [src]="formModel.imageUrl" alt="Event Image" style="max-width: 100%; max-height: 120px; margin-bottom: 8px;">
+      </div>
+
+      <!-- Event Card Preview -->
+      <div class="event-card-preview-container">
+        <div class="event-item">
+          <div class="left">
+            <img [src]="formModel.imageUrl || 'images/event1.jpg'" alt="{{formModel.title}}">
           </div>
-          <div>
-            <label>Time</label>
-            <input type="time" [(ngModel)]="formModel.time" name="time">
+          <div class="body">
+            <h4>{{formModel.title || 'Event Title'}}</h4>
+            <p class="meta">{{formModel.date || 'YYYY-MM-DD'}} • {{formModel.time || 'HH:MM'}} • {{formModel.location || 'Location'}}</p>
+            <p class="desc">{{formModel.description || 'Event description...'}}</p>
+          </div>
+          <div class="right">
+            <div class="price">₹{{formModel.price || '0'}}</div>
           </div>
         </div>
+      </div>
+      <!-- End Event Card Preview -->
 
-        <label>Location</label>
-        <input [(ngModel)]="formModel.location" name="location">
-
-        <div class="row">
-          <div>
-            <label>Price (₹)</label>
-            <input type="number" [(ngModel)]="formModel.price" name="price" placeholder="Enter amount in ₹">
-          </div>
-          <div>
-            <label>Capacity</label>
-            <input type="number" [(ngModel)]="formModel.capacity" name="capacity">
-          </div>
-        </div>
-
-        <label>Category</label>
-        <input [(ngModel)]="formModel.category" name="category">
-
-        <label>Image</label>
-        <input type="file" accept="image/*" (change)="onImageSelected($event)">
-        <div *ngIf="formModel.imageUrl" class="image-preview">
-          <img [src]="formModel.imageUrl" alt="Event Image" style="max-width: 100%; max-height: 120px; margin-bottom: 8px;">
-        </div>
-
-        <!-- Event Card Preview -->
-        <div class="event-card-preview-container">
-          <div class="event-item">
-            <div class="left">
-              <img [src]="formModel.imageUrl || 'images/event1.jpg'" alt="{{formModel.title}}">
-            </div>
-            <div class="body">
-              <h4>{{formModel.title || 'Event Title'}}</h4>
-              <p class="meta">{{formModel.date || 'YYYY-MM-DD'}} • {{formModel.time || 'HH:MM'}} • {{formModel.location || 'Location'}}</p>
-              <p class="desc">{{formModel.description || 'Event description...'}}</p>
-            </div>
-            <div class="right">
-              <div class="price">₹{{formModel.price || '0'}}</div>
-            </div>
-          </div>
-        </div>
-        <!-- End Event Card Preview -->
-
-        <div class="form-actions">
-          <button type="button" class="btn-cancel" (click)="cancelForm()">Cancel</button>
-          <button type="submit" class="btn-submit">{{ editingEvent ? 'Update' : 'Create' }}</button>
-        </div>
-      </form>
-    </div>
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="cancelForm()">Cancel</button>
+        <button type="submit" class="btn-submit">{{ editingEvent ? 'Update' : 'Create' }}</button>
+      </div>
+    </form>
   </div>
 </div>
