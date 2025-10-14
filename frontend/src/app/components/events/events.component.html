@@ -68,7 +68,7 @@
     <h3>{{ editingEvent ? 'Update Event' : 'Create Event' }}</h3>
     <form (ngSubmit)="submitForm()">
       <label>Title</label>
-      <input [(ngModel)]="formModel.title" name="title">
+      <input class="form-input" [(ngModel)]="formModel.title" name="title">
 
       <label>Description</label>
       <textarea [(ngModel)]="formModel.description" name="description"></textarea>
