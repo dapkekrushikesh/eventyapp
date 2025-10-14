@@ -142,6 +142,9 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   gap: 8px;
   position: relative;
+  min-width: 340px;
+  max-width: 520px;
+  width: 100%;
 }
 
 .search-bar .material-icons {
@@ -550,7 +553,7 @@
 }
 
 .category-filter:focus {
-  outline: 2px solid #1976d2;
+  outline: 2px solid #0078d4;
   background: #fff;
 }
 
@@ -1229,90 +1232,59 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   gap: 8px;
   position: relative;
+  min-width: 340px;
+  max-width: 520px;
+  width: 100%;
+}
+
+.search-bar .material-icons {
+  color: #0078d4;
+  font-size: 22px;
+  margin-right: 2px;
 }
 
 .search-input {
   border: none;
   outline: none;
   background: transparent;
+  padding: 8px 10px;
   font-size: 16px;
-  padding: 8px 0;
+  border-radius: 20px;
+  min-width: 180px;
   flex: 1;
 }
 
-.date-range-btn {
-  background: #fff;
-  color: #0078d4;
-  border: 1.5px solid #0078d4;
-  border-radius: 18px;
-  padding: 6px 14px;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  margin: 0 8px;
-  transition: background 0.2s, color 0.2s;
-  position: relative;
-  z-index: 101;
-}
-
-.date-range-btn:hover {
-  background: #0078d4;
-  color: #fff;
-}
-
-.date-range-popup {
-  position: absolute;
-  left: auto;
-  right: 0;
-  top: 100%;
-  margin-top: 6px;
-  background: #fff;
-  border: 1.5px solid #1976d2;
-  border-radius: 14px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
-  padding: 18px 20px 14px 20px;
-  z-index: 100;
-  min-width: 260px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.date-range-popup label {
-  font-size: 14px;
-  color: #1976d2;
-  margin-bottom: 2px;
-}
-
-.date-range-popup input[type="date"] {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 15px;
-  margin-bottom: 8px;
-  background: #f5f8fa;
-  color: #333;
-}
-
-.date-range-popup .btn-submit,
-.date-range-popup .btn-clear {
-  background: #1976d2;
-  color: #fff;
+.category-filter {
   border: none;
-  border-radius: 4px;
-  padding: 4px 14px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.date-range-popup .btn-clear {
+  background: #e9eef3;
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-size: 15px;
+  color: #333;
   margin-left: 8px;
 }
 
-.date-range-popup .btn-submit:hover,
-.date-range-popup .btn-clear:hover {
-  background: #1565c0;
+.category-filter:focus {
+  outline: 2px solid #0078d4;
+  background: #fff;
+}
+
+.date-range-btn,
+.search-btn {
+  background: none;
+  border: none;
+  color: #0078d4;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-range-btn:hover,
+.search-btn:hover {
+  background: #e3f0fc;
+  color: #1565c0;
 }
