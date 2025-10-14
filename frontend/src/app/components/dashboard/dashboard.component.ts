@@ -471,10 +471,9 @@ export class DashboardComponent implements OnInit {
     try {
       const bookingData = {
         eventId: this.selectedEvent._id || this.selectedEvent.id?.toString(),
-        quantity: this.ticketCount,
-        totalAmount: this.getTotalPrice(),
-        paymentMethod: method,
-        attendeeEmail: this.paymentEmail || this.currentUser.email
+        ticketCount: this.ticketCount,
+        userEmail: this.paymentEmail || this.currentUser.email,
+        paymentMethod: method
       };
 
       // Book the ticket via EventService
