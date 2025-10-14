@@ -400,8 +400,13 @@
         <!-- Confirmation modal (shown briefly before processing) -->
         <div *ngIf="paymentStep === 'confirm'" class="confirm-panel">
           <h4>Confirm Payment</h4>
+          <div class="confirm-details">
+            <p><strong>Number of Tickets:</strong> {{ticketCount}}</p>
+            <p><strong>Seat Numbers:</strong> <span *ngIf="selectedEvent && selectedEvent.availableSeats !== undefined">{{getSeatNumbers()}}</span></p>
+            <p><strong>Price per Ticket:</strong> ₹{{selectedEvent?.price}}</p>
+            <p><strong>Total Amount:</strong> ₹{{getTotalPrice() | number:'1.0-0'}}</p>
+          </div>
           <p>Method: <strong>{{selectedPaymentMethod}}</strong></p>
-          <p>Amount: <strong>₹{{getTotalPrice() | number:'1.0-0'}}</strong></p>
           <div style="margin-top:12px; text-align:center">
             <button class="btn-cancel" (click)="paymentStep='method'">Change</button>
             <button class="btn-submit" (click)="performPayment(selectedPaymentMethod)">Confirm & Pay</button>

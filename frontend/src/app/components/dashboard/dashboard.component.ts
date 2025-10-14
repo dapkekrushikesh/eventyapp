@@ -437,8 +437,11 @@ export class DashboardComponent implements OnInit {
     }
 
     try {
+      if (!this.selectedEvent._id) {
+        throw new Error('This event cannot be booked. Please select a valid event.');
+      }
       const bookingData = {
-        eventId: this.selectedEvent._id || this.selectedEvent.id?.toString(),
+        eventId: this.selectedEvent._id,
         ticketCount: this.ticketCount,
         userEmail: this.paymentEmail || this.currentUser.email,
         paymentMethod: method
@@ -650,5 +653,16 @@ export class DashboardComponent implements OnInit {
     this.filterStartDate = '';
     this.filterEndDate = '';
     this.showDateRangePopup = false;
+  }
+
+  // Helper to show seat numbers in confirmation
+  getSeatNumbers(): string {
+    if (!this.selectedEvent || typeof this.selectedEvent.availableSeats !== 'number') return '';
+    // Assume seats are assigned as last availableSeats - ticketCount + 1 to last availableSeats
+    const start = this.selectedEvent.availableSeats - this.ticketCount + 1;
+    const end = this.selectedEvent.availableSeats;
+    if (start < 1) return '';
+    if (start === end) return `${start}`;
+    return `${start} - ${end}`;
   }
 }
