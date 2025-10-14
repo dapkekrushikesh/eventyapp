@@ -114,3 +114,38 @@ label {
   color: var(--primary-hover);
   text-decoration: underline;
 }
+
+.requirements-list {
+  list-style: none;
+  padding: 0 0 0 8px;
+  margin: 0;
+}
+.requirements-list li {
+  display: flex;
+  align-items: center;
+  font-size: 0.97rem;
+  margin-bottom: 4px;
+  padding: 4px 0 4px 0;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.requirements-list li.met {
+  color: #388e3c;
+  background: #e8f5e9;
+  font-weight: 500;
+}
+.requirements-list li.not-met {
+  color: #b00020;
+  background: #ffebee;
+  font-weight: 400;
+}
+.requirement-icon {
+  display: inline-block;
+  width: 22px;
+  text-align: center;
+  font-size: 1.1em;
+  margin-right: 8px;
+}
+.requirement-icon.met {
+  color: #388e3c;
+}
