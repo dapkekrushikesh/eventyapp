@@ -166,7 +166,7 @@ export class EventService {
 
   // Book tickets for an event
   createBooking(bookingData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/tickets/book`, bookingData, this.getHttpOptions())
+    return this.http.post<any>(`${this.apiUrl}/api/tickets/book`, bookingData, this.getHttpOptions())
       .pipe(
         catchError(this.handleError)
       );
