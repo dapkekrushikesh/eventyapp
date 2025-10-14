@@ -5,24 +5,20 @@
 
 .events-header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 0;
   margin-bottom: 18px;
 }
 
 .search-bar {
+  flex: 1 1 0;
   display: flex;
   align-items: center;
-  background: #f5f8fa;
-  border-radius: 24px;
-  padding: 4px 12px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  gap: 8px;
-  position: relative;
   justify-content: center;
-  width: 100%;
   max-width: 600px;
+  margin: 0 auto;
 }
 
 .search-bar .material-icons {
@@ -492,5 +488,28 @@
   }
   .event-item .body, .event-card-preview-container .body {
     padding: 10px 8px;
+  }
+}
+
+.actions-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .events-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .search-bar {
+    max-width: 100%;
+    margin: 0;
+  }
+  .actions-right {
+    min-width: 0;
+    justify-content: center;
   }
 }
