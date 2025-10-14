@@ -21,12 +21,20 @@
   position: relative;
 }
 
+.search-bar .material-icons {
+  color: #0078d4;
+  font-size: 22px;
+  margin-right: 2px;
+}
+
 .search-input {
   border: none;
   outline: none;
   background: transparent;
+  padding: 8px 10px;
   font-size: 16px;
-  padding: 8px 0;
+  border-radius: 20px;
+  min-width: 180px;
   flex: 1;
 }
 
