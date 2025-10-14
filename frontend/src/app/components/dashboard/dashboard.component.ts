@@ -79,8 +79,7 @@ export class DashboardComponent implements OnInit {
     }
 
     // Subscribe to current user
-    this.authService.currentUser$.subscribe(user => {
-      // console.log('Current user:', user); // Debug: check user and role
+    this.authService.currentUser$.subscribe((user: User | null) => {
       this.currentUser = user;
       this.isAdmin = user?.role === 'admin';
       if (user) {
@@ -90,11 +89,11 @@ export class DashboardComponent implements OnInit {
     });
 
     // Subscribe to event changes for real-time updates
-    this.eventService.events$.subscribe(events => {
+    this.eventService.events$.subscribe((events: Event[]) => {
       this.events = events;
       // Update categories dynamically from events
-      const uniqueCategories = Array.from(new Set(events.map(e => e.category).filter(Boolean)));
-      this.categories = ['All', ...uniqueCategories];
+      const uniqueCategories = Array.from(new Set(events.map((e: Event) => e.category).filter(Boolean)));
+      this.categories = ['All', ...uniqueCategories as string[]];
     });
 
     // Removed demo events. Only load from backend.

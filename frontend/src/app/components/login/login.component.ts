@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -15,6 +16,10 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoading = false;
   errorMessage = '';
+
+  // Forgot password modal state
+  showForgotPasswordModal = false;
+  forgotPasswordEmail = '';
 
   constructor(
     private fb: FormBuilder, 
@@ -55,19 +60,28 @@ export class LoginComponent {
   }
 
   onForgotPassword() {
-    const email = this.loginForm.get('email')?.value;
-    if (email && this.loginForm.get('email')?.valid) {
-      this.authService.forgotPassword(email).subscribe({
+    this.forgotPasswordEmail = this.loginForm.get('email')?.value || '';
+    this.showForgotPasswordModal = true;
+  }
+
+  closeForgotPasswordModal() {
+    this.showForgotPasswordModal = false;
+    this.forgotPasswordEmail = '';
+  }
+
+  submitForgotPassword() {
+    if (this.forgotPasswordEmail && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(this.forgotPasswordEmail)) {
+      this.authService.forgotPassword(this.forgotPasswordEmail).subscribe({
         next: (response) => {
-          this.errorMessage = '';
           alert(response.message || 'Password reset email sent');
+          this.closeForgotPasswordModal();
         },
         error: (error) => {
-          this.errorMessage = error.message || 'Failed to send password reset email';
+          alert(error.message || 'Failed to send password reset email');
         }
       });
     } else {
-      this.errorMessage = 'Please enter a valid email address';
+      alert('Please enter a valid email address');
     }
   }
 
