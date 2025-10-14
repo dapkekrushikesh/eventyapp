@@ -13,12 +13,17 @@
 }
 
 .search-bar {
-  flex: 1 1 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  max-width: 600px;
-  margin: 0 auto;
+  background: #f5f8fa;
+  border-radius: 24px;
+  padding: 4px 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  gap: 8px;
+  position: relative;
+  min-width: 340px;
+  max-width: 520px;
+  width: 100%;
 }
 
 .search-bar .material-icons {
