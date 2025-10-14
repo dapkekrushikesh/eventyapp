@@ -216,4 +216,8 @@ export class SignupComponent {
     }
     return errors;
   }
+
+  hasUnmetPasswordRequirements(): boolean {
+    return this.passwordRequirements.some(req => !req.met);
+  }
 }
