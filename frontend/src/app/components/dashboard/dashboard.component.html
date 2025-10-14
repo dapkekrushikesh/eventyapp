@@ -371,22 +371,6 @@
             <button class="btn-cancel" (click)="paymentStep='method'">Back</button>
           </div>
         </div>
-        <!-- Wallet credential input after app selection -->
-        <div *ngIf="selectedWalletApp">
-          <h4>Enter {{ selectedWalletApp | titlecase }} Details</h4>
-          <div class="form-row">
-            <label *ngIf="selectedWalletApp === 'gpay'">Google Pay Number</label>
-            <label *ngIf="selectedWalletApp === 'phonepe'">PhonePe Number</label>
-            <label *ngIf="selectedWalletApp === 'paytm'">Paytm Number</label>
-            <label *ngIf="selectedWalletApp === 'bhim'">BHIM UPI ID</label>
-            <input type="text" [(ngModel)]="walletCreds" placeholder="Enter {{ selectedWalletApp === 'bhim' ? 'UPI ID' : 'Mobile Number' }}">
-          </div>
-          <div style="margin-top:12px">
-            <button class="btn-cancel" (click)="selectedWalletApp = ''">Back</button>
-            <button class="btn-submit" (click)="verifyWalletAndProceed()">Confirm</button>
-          </div>
-          <div *ngIf="paymentError" style="color:#b00020;margin-top:8px">{{paymentError}}</div>
-        </div>
 
         <!-- UPI form -->
         <div *ngIf="paymentStep === 'upi_form'">
@@ -428,11 +412,6 @@
         <div *ngIf="paymentStep === 'confirm'" class="confirm-panel">
           <h4>Confirm Payment</h4>
           <p>Method: <strong>{{selectedPaymentMethod}}</strong></p>
-          <p>Number of Tickets: <strong>{{ticketCount}}</strong></p>
-          <p *ngIf="selectedEvent && selectedEvent.capacity">
-            Seat Numbers: <strong>{{ getSeatNumbers() }}</strong>
-          </p>
-          <p>Price per Ticket: <strong>₹{{selectedEvent?.price}}</strong></p>
           <p>Amount: <strong>₹{{getTotalPrice() | number:'1.0-0'}}</strong></p>
           <div style="margin-top:12px; text-align:center">
             <button class="btn-cancel" (click)="paymentStep='method'">Change</button>

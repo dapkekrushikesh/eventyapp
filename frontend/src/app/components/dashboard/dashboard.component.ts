@@ -307,7 +307,6 @@ export class DashboardComponent implements OnInit {
   cardCvv: string = '';
 
   selectedWalletApp: string = '';
-  walletCreds: string = '';
   upiId: string = '';
   netbankUser: string = '';
   netbankPassword: string = '';
@@ -408,32 +407,15 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // Wallet: select an app then show credential input
+  // Wallet: select an app then go to confirm
   selectWalletApp(app: string) {
     this.selectedWalletApp = app;
-    this.walletCreds = '';
-    this.paymentError = '';
-    // Do not proceed to confirm yet; wait for user to enter creds and confirm
-  }
-
-  // Wallet: verify entered creds and proceed
-  verifyWalletAndProceed() {
-    this.paymentError = '';
-    if (!this.walletCreds || (this.selectedWalletApp !== 'bhim' && !/^\d{10}$/.test(this.walletCreds))) {
-      this.paymentError = this.selectedWalletApp === 'bhim'
-        ? 'Enter a valid UPI ID.'
-        : 'Enter a valid 10-digit mobile number.';
-      return;
-    }
-    if (this.selectedWalletApp === 'bhim' && !this.walletCreds.includes('@')) {
-      this.paymentError = 'Enter a valid BHIM UPI ID (e.g. name@bank).';
-      return;
-    }
+    // pretend to open app and verify
     this.paymentProcessing = true;
     setTimeout(() => {
       this.paymentProcessing = false;
       this.paymentStep = 'confirm';
-      this.selectedPaymentMethod = `wallet:${this.selectedWalletApp}:${this.walletCreds}`;
+      this.selectedPaymentMethod = `wallet:${app}`;
     }, 700);
   }
 
@@ -700,17 +682,5 @@ export class DashboardComponent implements OnInit {
     this.filterStartDate = '';
     this.filterEndDate = '';
     this.showDateRangePopup = false;
-  }
-
-  // Returns a string of seat numbers for the current booking (sequential, demo only)
-  getSeatNumbers(): string {
-    if (!this.selectedEvent || !this.selectedEvent.capacity) return '';
-    // For demo: assign next available seats (not persistent)
-    const start = this.selectedEvent.capacity - (this.selectedEvent.availableSeats || 0) + 1;
-    const end = start + this.ticketCount - 1;
-    if (start > end) return '';
-    const seats = [];
-    for (let i = start; i <= end; i++) seats.push(i);
-    return seats.join(', ');
   }
 }
