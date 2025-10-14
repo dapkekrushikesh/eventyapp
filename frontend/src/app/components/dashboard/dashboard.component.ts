@@ -437,11 +437,12 @@ export class DashboardComponent implements OnInit {
     }
 
     try {
-      if (!this.selectedEvent._id) {
+      const eventId = this.selectedEvent._id || this.selectedEvent.id?.toString();
+      if (!eventId) {
         throw new Error('This event cannot be booked. Please select a valid event.');
       }
       const bookingData = {
-        eventId: this.selectedEvent._id,
+        eventId: eventId,
         ticketCount: this.ticketCount,
         userEmail: this.paymentEmail || this.currentUser.email,
         paymentMethod: method
