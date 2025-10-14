@@ -353,7 +353,8 @@ export class DashboardComponent implements OnInit {
     if (method === 'card_credit' || method === 'card_debit') {
       this.paymentStep = 'card_form';
     } else if (method === 'wallet') {
-      this.paymentStep = 'wallet_select';
+      this.paymentStep = 'confirm';
+      this.selectedPaymentMethod = 'wallet';
     } else if (method === 'upi') {
       this.paymentStep = 'upi_form';
     } else if (method === 'netbank') {

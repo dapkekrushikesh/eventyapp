@@ -359,18 +359,7 @@
         </div>
 
         <!-- Wallet app selector -->
-        <div *ngIf="paymentStep === 'wallet_select'">
-          <h4>Select Wallet App</h4>
-          <div class="wallet-grid">
-            <button class="wallet-btn" (click)="selectWalletApp('gpay')">Google Pay</button>
-            <button class="wallet-btn" (click)="selectWalletApp('phonepe')">PhonePe</button>
-            <button class="wallet-btn" (click)="selectWalletApp('paytm')">Paytm</button>
-            <button class="wallet-btn" (click)="selectWalletApp('bhim')">BHIM</button>
-          </div>
-          <div style="margin-top:12px">
-            <button class="btn-cancel" (click)="paymentStep='method'">Back</button>
-          </div>
-        </div>
+        <!-- Removed wallet app selector (GPay, PhonePe, Paytm, BHIM) as requested -->
 
         <!-- UPI form -->
         <div *ngIf="paymentStep === 'upi_form'">
