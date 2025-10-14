@@ -8,6 +8,9 @@ const { sendResetEmail } = require('../utils/email');
 // Register new user
 exports.register = async (req, res) => {
   try {
+    // Debug: Log incoming registration data
+    console.log('Register request body:', req.body);
+
     // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
