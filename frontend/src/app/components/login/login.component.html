@@ -50,7 +50,7 @@
       Forgot Password?
     </button>
 
-    <div *ngIf="errorMessage" class="error-message" style="margin-top: 10px;">
+    <div *ngIf="errorMessage === 'Invalid credentials'" class="error-message" style="margin-top: 10px;">
       {{ errorMessage }}
     </div>
 
