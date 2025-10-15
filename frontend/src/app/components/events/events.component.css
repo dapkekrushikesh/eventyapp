@@ -1,6 +1,12 @@
 .events-page {
   padding: 20px;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--primary-light);
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .events-header {
@@ -443,6 +449,10 @@
   font-size: 16px;
   margin-left: 12px;
   transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .add-btn:hover {
@@ -702,6 +712,9 @@
   display: flex;
   height: 100vh;
   background-color: var(--primary-light);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
 }
 
 .sidebar {
