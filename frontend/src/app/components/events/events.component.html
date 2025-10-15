@@ -1,134 +1,170 @@
-<div class="events-page">
-  <div class="events-header">
-    <button class="back-btn" (click)="goBack()">
-      <span class="material-icons">arrow_back</span> Back
-    </button>
-    <div class="search-bar">
-      <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" class="search-input">
-      <select [(ngModel)]="selectedCategory" class="category-filter">
-        <option value="all">All Categories</option>
-        <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
-      </select>
-      <button class="date-range-btn search-btn visible-icon" (click)="toggleDateRangePopup()">
-        <span class="material-icons">date_range</span>
+<div class="dashboard-container" [class.sidebar-collapsed]="isSidebarCollapsed">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Eventy</h2>
+      <button class="collapse-btn" (click)="toggleSidebar()">
+        <span class="material-icons">
+          {{ isSidebarCollapsed ? 'menu' : 'close' }}
+        </span>
       </button>
-      <button class="search-btn visible-icon" (click)="applyFilter()">
-        <span class="material-icons">search</span>
-      </button>
-      <div class="date-range-popup" *ngIf="showDateRangePopup">
-        <label>From:</label>
-        <input type="date" [(ngModel)]="dateRange.from">
-        <label>To:</label>
-        <input type="date" [(ngModel)]="dateRange.to">
-        <button class="btn-submit" (click)="applyDateRange()">Apply</button>
-        <button class="btn-submit" (click)="clearDateRange()">Clear</button>
-      </div>
     </div>
-    <div class="actions-right">
-      <button class="add-btn" *ngIf="isAdmin" (click)="openCreate()">+ Add New</button>
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+            <span class="material-icons">dashboard</span>
+            <span class="nav-text">Dashboard</span>
+          </a>
+        </li>
+        <li *ngIf="isAdmin">
+          <a routerLink="/events" routerLinkActive="active" class="nav-item">
+            <span class="material-icons">event</span>
+            <span class="nav-text">Events</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="copyright" style="position: absolute; bottom: 20px; left: 20px; color: #666; font-size: 12px;">
+      © 2025 Kavya Infoweb Pvt Ltd.
     </div>
-  </div>
+  </aside>
 
-  <div class="events-main">
-    <div class="events-list">
-      <h3>Events</h3>
-      <div class="event-item" *ngFor="let e of filtered">
-        <div class="left">
-          <img [src]="e.imageUrl || 'images/event1.jpg'" alt="{{e.title}}">
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="events-page">
+      <div class="events-header">
+        <button class="back-btn" (click)="goBack()">
+          <span class="material-icons">arrow_back</span> Back
+        </button>
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" class="search-input">
+          <select [(ngModel)]="selectedCategory" class="category-filter">
+            <option value="all">All Categories</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+          </select>
+          <button class="date-range-btn search-btn visible-icon" (click)="toggleDateRangePopup()">
+            <span class="material-icons">date_range</span>
+          </button>
+          <button class="search-btn visible-icon" (click)="applyFilter()">
+            <span class="material-icons">search</span>
+          </button>
+          <div class="date-range-popup" *ngIf="showDateRangePopup">
+            <label>From:</label>
+            <input type="date" [(ngModel)]="dateRange.from">
+            <label>To:</label>
+            <input type="date" [(ngModel)]="dateRange.to">
+            <button class="btn-submit" (click)="applyDateRange()">Apply</button>
+            <button class="btn-submit" (click)="clearDateRange()">Clear</button>
+          </div>
         </div>
-        <div class="body">
-          <h4>{{e.title}}</h4>
-          <p class="meta">{{e.date}} • {{e.time}} • {{e.location}}</p>
-          <p class="desc">{{e.description}}</p>
+        <div class="actions-right">
+          <button class="add-btn" *ngIf="isAdmin" (click)="openCreate()">+ Add New</button>
         </div>
-        <div class="right">
-          <div class="price">₹{{e.price}}</div>
-          <div class="controls">
-            <button (click)="openEdit(e)">Update</button>
-            <button (click)="deleteEvent(e)">Delete</button>
+      </div>
+
+      <div class="events-main">
+        <div class="events-list">
+          <h3>Events</h3>
+          <div class="event-item" *ngFor="let e of filtered">
+            <div class="left">
+              <img [src]="e.imageUrl || 'images/event1.jpg'" alt="{{e.title}}">
+            </div>
+            <div class="body">
+              <h4>{{e.title}}</h4>
+              <p class="meta">{{e.date}} • {{e.time}} • {{e.location}}</p>
+              <p class="desc">{{e.description}}</p>
+            </div>
+            <div class="right">
+              <div class="price">₹{{e.price}}</div>
+              <div class="controls">
+                <button (click)="openEdit(e)">Update</button>
+                <button (click)="deleteEvent(e)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="booked-section">
+          <h3>Previously Booked Events</h3>
+          <div *ngIf="bookedEvents.length === 0" class="empty">No bookings yet</div>
+          <div class="booked-item" *ngFor="let b of bookedEvents">
+            <div class="b-title">{{b.title}}</div>
+            <div class="b-meta">{{b.date}} • {{b.location}}</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="booked-section">
-      <h3>Previously Booked Events</h3>
-      <div *ngIf="bookedEvents.length === 0" class="empty">No bookings yet</div>
-      <div class="booked-item" *ngFor="let b of bookedEvents">
-        <div class="b-title">{{b.title}}</div>
-        <div class="b-meta">{{b.date}} • {{b.location}}</div>
+    <!-- Form Modal (moved outside .events-page for overlay effect) -->
+    <div class="modal" *ngIf="showForm">
+      <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+        <h3>{{ editingEvent ? 'Update Event' : 'Create Event' }}</h3>
+        <form (ngSubmit)="submitForm()">
+          <label>Title</label>
+          <input class="form-input" [(ngModel)]="formModel.title" name="title">
+
+          <label>Description</label>
+          <textarea [(ngModel)]="formModel.description" name="description"></textarea>
+
+          <div class="row">
+            <div>
+              <label>Date</label>
+              <input type="date" [(ngModel)]="formModel.date" name="date">
+            </div>
+            <div>
+              <label>Time</label>
+              <input type="time" [(ngModel)]="formModel.time" name="time">
+            </div>
+          </div>
+
+          <label>Location</label>
+          <input [(ngModel)]="formModel.location" name="location">
+
+          <div class="row">
+            <div>
+              <label>Price (₹)</label>
+              <input type="number" [(ngModel)]="formModel.price" name="price" placeholder="Enter amount in ₹">
+            </div>
+            <div>
+              <label>Capacity</label>
+              <input type="number" [(ngModel)]="formModel.capacity" name="capacity">
+            </div>
+          </div>
+
+          <label>Category</label>
+          <input [(ngModel)]="formModel.category" name="category">
+
+          <label>Image</label>
+          <input type="file" accept="image/*" (change)="onImageSelected($event)">
+          <div *ngIf="formModel.imageUrl" class="image-preview">
+            <img [src]="formModel.imageUrl" alt="Event Image" style="max-width: 100%; max-height: 120px; margin-bottom: 8px;">
+          </div>
+
+          <!-- Event Card Preview -->
+          <div class="event-card-preview-container">
+            <div class="event-item">
+              <div class="left">
+                <img [src]="formModel.imageUrl || 'images/event1.jpg'" alt="{{formModel.title}}">
+              </div>
+              <div class="body">
+                <h4>{{formModel.title || 'Event Title'}}</h4>
+                <p class="meta">{{formModel.date || 'YYYY-MM-DD'}} • {{formModel.time || 'HH:MM'}} • {{formModel.location || 'Location'}}</p>
+                <p class="desc">{{formModel.description || 'Event description...'}}</p>
+              </div>
+              <div class="right">
+                <div class="price">₹{{formModel.price || '0'}}</div>
+              </div>
+            </div>
+          </div>
+          <!-- End Event Card Preview -->
+
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" (click)="cancelForm()">Cancel</button>
+            <button type="submit" class="btn-submit">{{ editingEvent ? 'Update' : 'Create' }}</button>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Form Modal (moved outside .events-page for overlay effect) -->
-<div class="modal" *ngIf="showForm">
-  <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
-    <h3>{{ editingEvent ? 'Update Event' : 'Create Event' }}</h3>
-    <form (ngSubmit)="submitForm()">
-      <label>Title</label>
-      <input class="form-input" [(ngModel)]="formModel.title" name="title">
-
-      <label>Description</label>
-      <textarea [(ngModel)]="formModel.description" name="description"></textarea>
-
-      <div class="row">
-        <div>
-          <label>Date</label>
-          <input type="date" [(ngModel)]="formModel.date" name="date">
-        </div>
-        <div>
-          <label>Time</label>
-          <input type="time" [(ngModel)]="formModel.time" name="time">
-        </div>
-      </div>
-
-      <label>Location</label>
-      <input [(ngModel)]="formModel.location" name="location">
-
-      <div class="row">
-        <div>
-          <label>Price (₹)</label>
-          <input type="number" [(ngModel)]="formModel.price" name="price" placeholder="Enter amount in ₹">
-        </div>
-        <div>
-          <label>Capacity</label>
-          <input type="number" [(ngModel)]="formModel.capacity" name="capacity">
-        </div>
-      </div>
-
-      <label>Category</label>
-      <input [(ngModel)]="formModel.category" name="category">
-
-      <label>Image</label>
-      <input type="file" accept="image/*" (change)="onImageSelected($event)">
-      <div *ngIf="formModel.imageUrl" class="image-preview">
-        <img [src]="formModel.imageUrl" alt="Event Image" style="max-width: 100%; max-height: 120px; margin-bottom: 8px;">
-      </div>
-
-      <!-- Event Card Preview -->
-      <div class="event-card-preview-container">
-        <div class="event-item">
-          <div class="left">
-            <img [src]="formModel.imageUrl || 'images/event1.jpg'" alt="{{formModel.title}}">
-          </div>
-          <div class="body">
-            <h4>{{formModel.title || 'Event Title'}}</h4>
-            <p class="meta">{{formModel.date || 'YYYY-MM-DD'}} • {{formModel.time || 'HH:MM'}} • {{formModel.location || 'Location'}}</p>
-            <p class="desc">{{formModel.description || 'Event description...'}}</p>
-          </div>
-          <div class="right">
-            <div class="price">₹{{formModel.price || '0'}}</div>
-          </div>
-        </div>
-      </div>
-      <!-- End Event Card Preview -->
-
-      <div class="form-actions">
-        <button type="button" class="btn-cancel" (click)="cancelForm()">Cancel</button>
-        <button type="submit" class="btn-submit">{{ editingEvent ? 'Update' : 'Create' }}</button>
-      </div>
-    </form>
-  </div>
+  </main>
 </div>

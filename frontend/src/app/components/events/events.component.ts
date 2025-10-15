@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../services/event.service';
 import { AuthService } from '../../services/auth.service';
@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
@@ -39,6 +39,7 @@ export class EventsComponent {
 
   isSubmitting = false;
   isAdmin: boolean = false;
+  isSidebarCollapsed = false;
 
   // Filter properties
   filterStartDate: string = '';
@@ -217,5 +218,9 @@ export class EventsComponent {
     this.filterStartDate = '';
     this.filterEndDate = '';
     this.showDateRangePopup = false;
+  }
+
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 }
